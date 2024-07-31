@@ -4,8 +4,9 @@ The base repository for Games Programming @ Swinburne University. Students are e
 ## Students, remove the above text and modify the below, following the instructions.
 
 ## Who Am I?
-
-TODO: Add your name, student id, and easy email link here, formatted as a unordered list.
+- Ben Holmes
+- 103024841
+- [Email](103024841@student.swin.edu.au)
 
 ## Purpose
 

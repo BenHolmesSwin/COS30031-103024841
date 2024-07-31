@@ -39,6 +39,6 @@ Release
 *.user
 
 #c++
-.ilk
-.obj
-.pdb
+*.ilk
+*.obj
+*.pdb

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <string>   
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -40,6 +41,52 @@ void prrintrandarray()
     cout << endl;
 }
 
+//part 1f
+void splitstring(){
+    string str = "this has spaces in it";
+    string s;
+    
+    stringstream ss(str);
+    vector<string> v;
+    while (getline(ss, s, ' ')) {
+        v.push_back(s);
+    }
+
+    cout << "list of words:" << endl;
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i] << endl;
+    }
+}
+
+//part 1g
+class Tester
+{
+    public:
+        string name;
+        Tester( string namein,int start,int multi)
+        {
+            name = namein;
+            startpoint = start;
+            multiplier = multi;
+            DoCalc();
+        }
+        void SetStart(int start)
+        {
+            startpoint = start;
+            DoCalc();
+        }
+        int GetEnd(){return endpoint;}
+    private:
+        int startpoint;
+        int multiplier;
+        int endpoint;
+        void DoCalc()
+        {
+            endpoint = startpoint * multiplier;
+        }
+    
+};
+
 int main()
 {
     cout << "part 1a" << endl;
@@ -57,4 +104,12 @@ int main()
     printodd();
     cout << "part 1e" << endl;
     prrintrandarray();
+    cout << "part 1f" << endl;
+    splitstring();
+    cout << "part 1g" << endl;
+    Tester tester = Tester("Tester",5,7);
+    cout << "Name: " << tester.name << ", Enpoint: " << tester.GetEnd() << endl;
+    tester.name = "Tester Changed";
+    tester.SetStart(20);
+    cout << "Name: " << tester.name << ", Enpoint: " << tester.GetEnd() << endl;
 }

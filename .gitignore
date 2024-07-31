@@ -37,3 +37,8 @@ Debug
 Release
 *.filters
 *.user
+
+#c++
+.ilk
+.obj
+.pdb

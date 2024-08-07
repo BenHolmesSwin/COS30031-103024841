@@ -50,7 +50,7 @@ Updates
 #define SECTION4 false;
 #define SECTION5 false;
 #define SECTION6 false;
-#define SECTION7 false;
+#define SECTION7 true;
 
 #include <iostream>
 
@@ -215,7 +215,7 @@ int main()
 	// ##Q.23	Change the size argument to 10 (or similar). What happens?
 	// ##Q23.1	You might see some values that we set earlier. Why would this happen?
 	cout << "Q.23: Array position overrun ... " << endl;
-	showParticleArray(p_array2, 3); // <-- change size from 3 to 10
+	showParticleArray(p_array2, 10); // <-- change size from 3 to 10
 #endif
 
 #if SECTION6
@@ -370,7 +370,7 @@ void showParticleArray_2(Particle arr[], int size)
 	 if (true) {
 		 cout << "Array as arr[] ..." << endl;
 		 cout << " - sizeof entire array? " << sizeof(arr) << endl;
-		 cout << " - sizeof array element? " << sizeof(arr) << endl;
+		 cout << " - sizeof array element? " << sizeof(arr[0]) << endl;
 		 cout << " - array size n is: " << (sizeof(arr) / sizeof(arr[0])) << endl;
 	 }
 	 */

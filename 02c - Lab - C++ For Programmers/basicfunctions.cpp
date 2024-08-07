@@ -61,6 +61,13 @@ void splitstring(){
 //part 1g
 class Tester
 {
+    int startpoint;
+    int multiplier;
+    int endpoint;
+    void DoCalc()
+    {
+        endpoint = startpoint * multiplier;
+    }
     public:
         string name;
         Tester( string namein,int start,int multi)
@@ -76,15 +83,6 @@ class Tester
             DoCalc();
         }
         int GetEnd(){return endpoint;}
-    private:
-        int startpoint;
-        int multiplier;
-        int endpoint;
-        void DoCalc()
-        {
-            endpoint = startpoint * multiplier;
-        }
-    
 };
 
 int main()

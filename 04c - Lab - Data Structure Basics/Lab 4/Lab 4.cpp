@@ -114,7 +114,7 @@ int main() {
 	// ##Q.7	Can we access a list value using and int index? Explain.
 	// ##Q.8	Is there a reason to use a list instead of a vector?
 
-	//vector_demo();
+	vector_demo();
 	// ##Q.9	Was max_size and size the same? (Can they be different?)
 	// ##Q.10	Which ParticleClass constructor was called?
 	// ##Q.11	Were the ParticleClass instances deleted? If so, how?
@@ -208,7 +208,7 @@ void array_demo_1() {
 	showIntArray(a1);
 
 	// access of array by [index] is not range protected (BAD)
-	cout << "What is at [3]? (out of bounds) " << a1[3] << endl;
+	//cout << "What is at [3]? (out of bounds) " << a1[3] << endl;
 	// ##Q.1.7 Try this. Why does a1[3] work but at(3) does not?
 	if (false) // change to true to test
 		cout << "What is at(3)? (out of range exception) " << a1.at(3) << endl;
@@ -324,7 +324,6 @@ void list_demo() {
 	// set some initial values:
 	cout << "List (double-linked list) ... " << endl;
 	for (int i = 1; i <= 5; ++i) l1.push_back(i); // 1 2 3 4 5
-
 	cout << " - list contains:";
 	for (auto& i : l1) cout << " " << i;
 	cout << endl;
@@ -375,7 +374,7 @@ void vector_demo() {
 
 	v2.push_back(ParticleClass(1, 2));
 	v2.push_back(ParticleClass(3, 4));
-	v2.push_back(ParticleClass(5, 6));
+	v2.push_back(ParticleClass(5, 6));	
 
 	cout << "Show v2 vector of ParticleClass instance details using show() ... " << endl;
 	for (auto& p : v2)

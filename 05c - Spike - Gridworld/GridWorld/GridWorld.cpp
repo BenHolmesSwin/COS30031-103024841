@@ -138,22 +138,24 @@ void update(char option) {
 		//making new options
 		options.clear();
 		
-		if (playerY > 0) {
+		//the number checks before the letter checks are incase they are on the edge of the map (such as at the start)
+		//they are there for all 4 so that the map can be adjusted to have any start location/ not need the outer walls
+		if (playerY > 0) {// north/up check
 			if (map[playerY - 1][playerX] != '#') {
 				options.push_back('N');
 			}
 		}
-		if (playerX < 7) {
+		if (playerX < 7) {// east/right check
 			if (map[playerY][playerX + 1] != '#') {
 				options.push_back('E');
 			}
 		}
-		if (playerY < 7) {
+		if (playerY < 7) {// south/down check
 			if (map[playerY + 1][playerX] != '#') {
 				options.push_back('S');
 			}
 		}
-		if (playerX > 0) {
+		if (playerX > 0) {// west/left check
 			if (map[playerY][playerX - 1] != '#') {
 				options.push_back('W');
 			}
@@ -178,7 +180,7 @@ int main() {
 		cout << "YOU WIN!" << endl;
 		cout << "Thanks for playing. There probably won’t be a next time." << endl;
 	}
-	else {
+	else {// this is when on 'D'
 		cout << "Arrrrgh... you have fallen down a pit and landed on spikes." << endl;
 		cout << "YOU HAVE DIED!" << endl;
 		cout << "Thanks for playing. There probably won’t be a next time." << endl;

@@ -45,25 +45,53 @@ bool sucess = false;
 // current options as list of char
 list<char> options;
 
-char display() {
-	
+void display() {
+	cout << "===Current Map===" << endl;
+	for (int i = 0; i <= 7; i++) {
+		for (int j = 0; j <= 7; j++) {
+			//spacing
+			cout << ' ';
+			if (playerX == j && playerY == i) {// check for player position
+				cout << 'X';
+			}
+			else {
+				cout << map[i][j];
+			}
+		}
+		cout << endl;
+	}
+	cout << "=================" << endl;
+	//Key
+	cout << " # is wall\n D is death\n S is start\n G is gold\n X is player" << endl;
+	cout << "=================" << endl;
+}
+
+char input() {
+	bool badInput = true;
+	while (badInput) {
+		cout << "You can move ";
+		for (char option : options) {
+			cout << option << ' ';
+		}
+		
+		badInput = false;//exit loop on first for debug
+	}
 	return ' ';
 }
 
-void input(char option) {
-
-}
-
-void update() {
-
+void update(char option) {
+	
 }
 
 int main() {
+	//inital values
+	options.push_back('N');
 
 	while (playing) {
-		char option = display();
-		input(option);
-		update();
+		display();
+		char option = input();
+		update(option);
+		playing = false;//exit loop on first for debug
 	}
 
 

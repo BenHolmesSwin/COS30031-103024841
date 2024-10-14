@@ -68,15 +68,31 @@ void display() {
 
 char input() {
 	bool badInput = true;
+	char input;
 	while (badInput) {
+		cout << "Exit program is Q" << endl;
 		cout << "You can move ";
 		for (char option : options) {
 			cout << option << ' ';
 		}
-		
-		badInput = false;//exit loop on first for debug
+		cout << ":> ";
+		cin >> input;
+		//check all options against input
+		for (char option : options) {
+			if (input == option) {
+				badInput = false;//ends loop when false
+			}
+		}
+		//check input for Q for quit
+		if (input == 'Q') {
+			badInput = false;
+		}
+		//if bad input, state it
+		if (badInput) {
+			cout << "Bad Input. Try Again:" << endl;
+		}
 	}
-	return ' ';
+	return input;
 }
 
 void update(char option) {
@@ -86,6 +102,9 @@ void update(char option) {
 int main() {
 	//inital values
 	options.push_back('N');
+	options.push_back('E');
+	options.push_back('S');
+	options.push_back('W');
 
 	while (playing) {
 		display();

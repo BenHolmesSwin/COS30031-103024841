@@ -45,12 +45,26 @@ public:
             cout << "Item id: " << inventory[i].id << " |";
             cout << "Item type: " << inventory[i].type << " |";
             cout << inventory[i].description << " |";
+            cout << endl;
+        }
+        cout << "=============" << endl;
     }
 };
 
 int main()
 {
     //player creation and inventory
+    Player player = Player(100);
+    player.addItem(Item(0, Sword, "A basic sword"));
+    player.addItem(Item(1, Sword, "A basic sword"));
+    player.addItem(Item(2, Rock, "A small rock"));
+    player.addItem(Item(3, Bag, "A bag that can store something"));
+
+    //viewing
+    cout << "Viewing the inverntory!" << endl;
+    player.showInventory();
+
+    //adding item
     cout << "Adding a Rope" << endl;
     player.addItem(Item(4, Rope, "A rope you can use to climb"));
     player.showInventory();

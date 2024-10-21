@@ -29,17 +29,16 @@ Adventure::Adventure(const char* fileName)
 }
 
 void Adventure::Start(json data){
-
-	data.at("locations").get_to(graph);
+	for (const auto& l : data["locations"]) {
+		string id = l["id"];
+		location::Location location = l.template get<location::Location>();
+		graph.insert(pair<string,location::Location>(id, location));
+	}
 	update("castle");
 }
 
 void Adventure::update(string s) {
-	for (location::Location l : graph) {
-		if (l.id == s) {
-			current = l;
-		}
-	}
+	current = s;
 }
 
 vector<string> split(string& s, const string& delimiter) {// split tokens
@@ -58,8 +57,8 @@ vector<string> split(string& s, const string& delimiter) {// split tokens
 
 //renders current location
 void Adventure::gameRender() {
-	cout << "You are currently at: " << current.name << endl;
-	cout << current.description << endl;
+	cout << "You are currently at: " << graph[current].name << endl;
+	cout << graph[current].description << endl;
 
 }
 
@@ -69,7 +68,7 @@ string Adventure::gameInput() {
 	string result;
 	while (badInput) {
 		cout << "You may GO to: ";
-		for (string s : current.connections) {
+		for (string s : graph[current].connections) {
 			cout << s << " | ";
 		}
 		cout << endl;
@@ -80,7 +79,7 @@ string Adventure::gameInput() {
 		if (tokens.size() == 2) {
 			if (tokens[0] == "GO") {
 				//check all options against input
-				for (string posibleOption : current.connections) {
+				for (string posibleOption : graph[current].connections) {
 					if (posibleOption == tokens[1]) {
 						result = posibleOption;
 						badInput = false;

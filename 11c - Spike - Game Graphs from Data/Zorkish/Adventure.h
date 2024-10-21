@@ -10,9 +10,9 @@ class Adventure
 public:
 
 	Adventure(const char* fileName);
-	location::Location current;
+	string current;
 	void Start(json data);
-	vector<location::Location> graph;
+	map<string,location::Location> graph;
 	void update(string s);
 	void gameRender();
 	string gameInput();

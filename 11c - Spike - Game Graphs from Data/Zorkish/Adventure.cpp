@@ -30,4 +30,16 @@ Adventure::Adventure(const char* fileName)
 
 void Adventure::Start(json data){
 
+	data.at("locations").get_to(graph);
+
+	//for testing output currently
+	for (location::Location l : graph) {
+		cout << l.name << endl;
+		cout << "Id: " << l.id << endl;
+		cout << "Description: " << l.description << endl;
+		cout << "Connections:" << endl;
+		for (string s : l.connections){
+			cout << "\t" << s << endl;
+		}
+	}
 }

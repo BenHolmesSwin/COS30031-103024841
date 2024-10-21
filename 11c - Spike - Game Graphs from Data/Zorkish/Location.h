@@ -3,7 +3,10 @@
 #include <string>
 #include <vector>
 
+#include "json.hpp"
+
 using namespace std;
+using json = nlohmann::json;
 
 namespace location {
 	struct Location
@@ -14,4 +17,5 @@ namespace location {
 		vector<string> connections;
 	};
 
+	void from_json(const json& j, Location& l);
 }

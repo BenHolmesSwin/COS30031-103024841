@@ -56,7 +56,6 @@ vector<string> split(string& s, const string& delimiter) {// split tokens
 	return tokens;
 }
 
-//For better zorkish, move game renderer
 //renders current location
 void Adventure::gameRender() {
 	cout << "You are currently at: " << current.name << endl;
@@ -89,12 +88,12 @@ string Adventure::gameInput() {
 				}
 
 			}
-		}//check input for Q for quit
+		}//check input for QUIT
 		else if (tokens[0] == "QUIT") {
 			result = "QUIT";
 			badInput = false;
 		}
-		else {
+		if(badInput){
 			cout << "Bad Input. Try Again:" << endl;
 		}
 	}
@@ -105,12 +104,7 @@ bool Adventure::gameUpdate(string input) {
 	if (input == "QUIT") {
 		return false;
 	}
-	for (location::Location l : graph) {
-		if (l.id == input) {
-			current = l;
-			return true;
-		}
-	}
+	update(input);
 	return true;
 }
 

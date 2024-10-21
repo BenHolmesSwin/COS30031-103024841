@@ -1,0 +1,133 @@
+{
+  "Castle": {
+    "id": "castle",
+    "name": "Castle",
+    "desc": "A big stone Castle",
+    "connections": {
+      "sewers": "sewers",
+      "capital": "capital"
+    }
+  },
+  "Sewers": {
+    "id": "sewers",
+    "name": "Sewers",
+    "desc": "Sewers underneath the capital",
+    "connections": {
+      "ancient": "ancient",
+      "castle": "castle",
+      "fields": "fields"
+    }
+  },
+  "Ancient": {
+    "id": "ancient",
+    "name": "Ancient City",
+    "desc": "An ancient city buried underneath the capital sewers",
+    "connections": {
+      "sewers": "sewers"
+    }
+  },
+  "Capital": {
+    "id": "capital",
+    "name": "Capital",
+    "desc": "the castle town, centre of the country",
+    "connections": {
+      "castle": "castle",
+      "fields": "fields",
+      "forest": "forest"
+    }
+  },
+  "Fields": {
+    "id": "fields",
+    "name": "Fields",
+    "desc": "The fields around the capital",
+    "connections": {
+      "capital": "capital",
+      "forest": "forest",
+      "pass": "pass"
+    }
+  },
+  "Pass": {
+    "id": "pass",
+    "name": "Mountain Pass",
+    "desc": "The mountain pass to the south of the nation",
+    "connections": {
+      "fields": "fields",
+      "fort": "fort"
+    }
+  },
+  "Fort": {
+    "id": "fort",
+    "name": "Fort",
+    "desc": "An old fort in the mountain pass",
+    "connections": {
+      "pass": "pass",
+      "town": "town",
+      "woods": "woods"
+    }
+  },
+  "town": {
+    "id": "town",
+    "name": "Town",
+    "desc": "The border town",
+    "connections": {
+      "fort": "fort",
+      "woods": "woods"
+    }
+  },
+  "Woods": {
+    "id": "woods",
+    "name": "Woods",
+    "desc": "A woody area south of the pass on the border",
+    "connections": {
+      "fort": "fort",
+      "town": "town"
+    }
+  },
+  "Forest": {
+    "id": "forest",
+    "name": "Forest",
+    "desc": "The forest north of the capital",
+    "connections": {
+      "capital": "capital",
+      "fields": "fields",
+      "tower": "tower",
+      "river": "river",
+      "village": "village"
+    }
+  },
+  "Tower": {
+    "id": "tower",
+    "name": "Tower",
+    "desc": "A spooky tower in the depths of the forest",
+    "connections": {
+      "forest": "forest"
+    }
+  },
+  "River": {
+    "id": "river",
+    "name": "River",
+    "desc": "A small river running through the forest",
+    "connections": {
+      "forest": "forest",
+      "village": "village"
+    }
+  },
+  "Village": {
+    "id": "village",
+    "name": "Village",
+    "desc": "The foresters village",
+    "connections": {
+      "forest": "forest",
+      "river": "river",
+      "caves": "caves"
+    }
+  },
+  "Caves": {
+    "id": "caves",
+    "name": "Caves",
+    "desc": "Extensive cave system full of monsters",
+    "connections": {
+      "village": "village"
+    }
+  }
+}

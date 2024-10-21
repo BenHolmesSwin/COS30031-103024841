@@ -3,7 +3,9 @@
 
 #include <iostream>
 
+#include "Adventure.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    Adventure adventure("Adventure.json");
 }

@@ -34,12 +34,8 @@ void Adventure::Start(json data){
 
 	//for testing output currently
 	for (location::Location l : graph) {
-		cout << l.name << endl;
-		cout << "Id: " << l.id << endl;
-		cout << "Description: " << l.description << endl;
-		cout << "Connections:" << endl;
-		for (string s : l.connections){
-			cout << "\t" << s << endl;
+		if (l.id == "castle") {
+			current = l;
 		}
 	}
 }

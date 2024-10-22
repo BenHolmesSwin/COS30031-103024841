@@ -1,0 +1,318 @@
+{
+  "player": {
+    "health": 100,
+    "inventory": [
+      {
+        "id": "key",
+        "name": "Key",
+        "desc": "A key"
+      },
+      {
+        "id": "sword",
+        "name": "Sword",
+        "desc": "A nice iron sword"
+      }
+    ]
+  },
+  "locations": [
+    {
+      "id": "castle",
+      "name": "Castle",
+      "desc": "A big stone Castle",
+      "connections": [
+        "sewers",
+        "capital"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "sewers",
+      "name": "Sewers",
+      "desc": "Sewers underneath the capital",
+      "connections": [
+        "ancient",
+        "castle",
+        "fields"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "ancient",
+      "name": "Ancient City",
+      "desc": "An ancient city buried underneath the capital sewers",
+      "connections": [
+        "sewers"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "capital",
+      "name": "Capital",
+      "desc": "the castle town, centre of the country",
+      "connections": [
+        "castle",
+        "fields",
+        "forest"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "fields",
+      "name": "Fields",
+      "desc": "The fields around the capital",
+      "connections": [
+        "capital",
+        "forest",
+        "pass"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "name": "Mountain Pass",
+      "desc": "The mountain pass to the south of the nation",
+      "connections": [
+        "fields",
+        "fort"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "fort",
+      "name": "Fort",
+      "desc": "An old fort in the mountain pass",
+      "connections": [
+        "pass",
+        "town",
+        "woods"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "town",
+      "name": "Town",
+      "desc": "The border town",
+      "connections": [
+        "fort",
+        "woods"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "woods",
+      "name": "Woods",
+      "desc": "A woody area south of the pass on the border",
+      "connections": [
+        "fort",
+        "town"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "forest",
+      "name": "Forest",
+      "desc": "The forest north of the capital",
+      "connections": [
+        "capital",
+        "fields",
+        "tower",
+        "river",
+        "village"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "tower",
+      "name": "Tower",
+      "desc": "A spooky tower in the depths of the forest",
+      "connections": [
+        "forest"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "river",
+      "name": "River",
+      "desc": "A small river running through the forest",
+      "connections": [
+        "forest",
+        "village"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "village",
+      "name": "Village",
+      "desc": "The foresters village",
+      "connections": [
+        "forest",
+        "river",
+        "caves"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    },
+    {
+      "id": "caves",
+      "name": "Caves",
+      "desc": "Extensive cave system full of monsters",
+      "connections": [
+        "village"
+      ],
+      "contents": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple"
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items (not implemented)"
+        }
+      ]
+    }
+  ]
+}

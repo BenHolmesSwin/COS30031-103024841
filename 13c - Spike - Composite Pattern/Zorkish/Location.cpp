@@ -11,10 +11,6 @@ namespace location {
 		j.at("name").get_to(l.name);
 		j.at("desc").get_to(l.description);
 		j.at("connections").get_to(l.connections);
-		for (const auto& ent : j["contents"]) {
-			string id = ent["id"];
-			entity::Entity entityClass = ent.template get<entity::Entity>();
-			l.contents[id] = entityClass;
-		}
+		l.contents = createContents(j);
 	}
 }

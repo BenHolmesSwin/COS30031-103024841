@@ -1,6 +1,7 @@
 
 #include "Player.h"
 
+
 using namespace std;
 using json = nlohmann::json;
 
@@ -15,11 +16,6 @@ namespace player {
 
 	void from_json(const json& j, Player& p) {
 		j.at("health").get_to(p.health);
-		for (const auto& ent : j["inventory"]) {
-			string id = ent["id"];
-			entity::Entity entityClass = ent.template get<entity::Entity>();
-			p.addItem(id, entityClass);
-		}
+		p.inventory = createContents(j);
 	}
-	
 }

@@ -14,7 +14,32 @@ namespace entity {
 		string id;
 		string name;
 		string description;
+		bool carry;
+		bool locked = false;
+		map<string, Entity> contents;
 	};
-
-	void from_json(const json& j, Entity& l);
 }
+namespace bag {
+	struct Bag : entity::Entity
+	{
+	};
+}
+namespace pouch {
+	struct Pouch : entity::Entity
+	{
+	};
+}
+namespace barrel {
+	struct Barrel : entity::Entity
+	{
+		bool carry = false;
+	};
+}
+namespace chest {
+	struct Chest : entity::Entity
+	{
+		bool carry = false;
+	};
+}
+
+map<string, entity::Entity> createContents(const json& j);

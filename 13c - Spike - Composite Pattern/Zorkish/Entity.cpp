@@ -10,5 +10,73 @@ namespace entity {
 		j.at("id").get_to(l.id);
 		j.at("name").get_to(l.name);
 		j.at("desc").get_to(l.description);
+		j.at("carry").get_to(l.carry);
 	}
+
+}
+namespace bag {
+	//if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .contents = entity::createContents(ent);
+	void from_json(const json& j, Bag& b) {
+		j.at("id").get_to(b.id);
+		j.at("name").get_to(b.name);
+		j.at("desc").get_to(b.description);
+		j.at("carry").get_to(b.carry);
+		for (const auto& ent : j["contents"]) {
+			b.contents[ent["id"]] = ent.template get<entity::Entity>();
+		}
+	}
+}
+namespace pouch {
+	void from_json(const json& j, Pouch& p) {
+		j.at("id").get_to(p.id);
+		j.at("name").get_to(p.name);
+		j.at("desc").get_to(p.description);
+		j.at("locked").get_to(p.locked);
+		for (const auto& ent : j["contents"]) {
+			p.contents[ent["id"]] = ent.template get<entity::Entity>();
+		}
+	}
+}
+namespace barrel {
+	void from_json(const json& j, Barrel& b) {
+		j.at("id").get_to(b.id);
+		j.at("name").get_to(b.name);
+		j.at("desc").get_to(b.description);
+		for (const auto& ent : j["contents"]) {
+			b.contents[ent["id"]] = ent.template get<entity::Entity>();
+		}
+	}
+}
+namespace chest {
+	void from_json(const json& j, Chest& c) {
+		j.at("id").get_to(c.id);
+		j.at("name").get_to(c.name);
+		j.at("desc").get_to(c.description);
+		j.at("locked").get_to(c.locked);
+		for (const auto& ent : j["contents"]) {
+			c.contents[ent["id"]] = ent.template get<entity::Entity>();
+		}
+	}
+}
+
+map<string, entity::Entity> createContents(const json& j) {
+	map<string, entity::Entity> result;
+	for (const auto& ent : j["contents"]) {
+		if (ent["name"] == "Bag") {
+			result[ent["id"]] = ent.template get<bag::Bag>();
+		}
+		else if (ent["name"] == "Pouch") {
+			result[ent["id"]] = ent.template get<pouch::Pouch>();
+		}
+		else if (ent["name"] == "Barrel") {
+			result[ent["id"]] = ent.template get<barrel::Barrel>();
+		}
+		else if (ent["name"] == "Chest") {
+			result[ent["id"]] = ent.template get<chest::Chest>();
+		}
+		else {
+			result[ent["id"]] = ent.template get<entity::Entity>();
+		}
+	}
+	return result;
 }

@@ -5,6 +5,14 @@
 
 using namespace std;
 
+//seperating out the check so it doesnt need to be repeated
+bool entityContentsCheck(const entity::Entity& ent) {
+	if (ent.name == "Bag" || ent.name == "Pouch" || ent.name == "Barrel" || ent.name == "Chest") {
+		return true;
+	}
+	return false;
+}
+
 //execute commands will return to badInput at the adventure.gameInput() level, meaning to keep in the input loop, the badInput result will be true
 
 pair<bool, string> GoCommand::execute( vector<string> args,Adventure& adventure) {
@@ -56,6 +64,30 @@ string InventoryCommand::syntax(string cmdName) {
 }
 
 //LOOK command
+string lookIn(const entity::Entity& ent) {
+	string resultString = "This item has no possible contents";
+	if (entityContentsCheck(ent)) {
+		cout << "Looking in: " << ent.name << endl;
+		if (ent.contents.size() > 0)
+		{
+			cout << "Contains: ";
+			for (const auto& con : ent.contents) {
+				cout << con.first << " | ";
+			}
+			cout << endl;
+		}
+		else {
+			cout << "Nothing in this " + ent.name << endl;
+		}
+		resultString = "LOOK IN done";
+	}
+	else
+	{
+		resultString = "Nothing to LOOK IN";
+	}
+	return  resultString;
+}
+
 pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventure) {
 	string resultString = "No matching item, use LOOK to see possible paths";
 	bool badInput = true;
@@ -72,6 +104,17 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 				cout << "Looking at: " << ent.name << " | " << ent.description << endl;
 				badInput = false;
 				resultString = "LOOK AT done";
+			}
+		}else if (args[1] == "IN") {
+			if (adventure.graph[adventure.current].contents.count(args[2])) {//if graph contents contains entity with key ars[2]
+				const auto& ent = adventure.graph[adventure.current].contents[args[2]];
+				resultString = lookIn(ent);
+				badInput = false;
+			}
+			else if (adventure.player.inventory.count(args[2])) {
+				const auto& ent = adventure.player.inventory[args[2]];
+				resultString = lookIn(ent);
+				badInput = false;
 			}
 		}
 	}
@@ -94,6 +137,9 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 string LookCommand::syntax(string cmdName) {
 	return  cmdName + " || displays current locations paths and entities || "+ cmdName + "_AT_[id] || displays entity with [id] description";
 }
+
+
+
 
 //ALIAS command
 pair<bool, string> AliasCommand::execute(vector<string> args, Adventure& adventure) {

@@ -1,16 +1,18 @@
 {
   "player": {
     "health": 100,
-    "inventory": [
+    "contents": [
       {
         "id": "key",
         "name": "Key",
-        "desc": "A key"
+        "desc": "A key",
+        "carry": true
       },
       {
         "id": "sword",
         "name": "Sword",
-        "desc": "A nice iron sword"
+        "desc": "A nice iron sword",
+        "carry": true
       }
     ]
   },
@@ -27,12 +29,21 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+            {
+              "id": "apple",
+              "name": "Apple",
+              "desc": "A fresh apple",
+              "carry": true
+            }
+          ]
         }
       ]
     },
@@ -49,12 +60,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -69,12 +84,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -91,12 +110,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -113,12 +136,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -134,12 +161,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -156,12 +187,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -177,12 +212,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -198,12 +237,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -222,12 +265,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -242,12 +289,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -263,12 +314,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -285,12 +340,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     },
@@ -305,12 +364,16 @@
         {
           "id": "apple",
           "name": "Apple",
-          "desc": "A fresh apple"
+          "desc": "A fresh apple",
+          "carry": true
         },
         {
           "id": "barrel",
           "name": "Barrel",
-          "desc": "A Barrel containing items (not implemented)"
+          "desc": "A Barrel containing items",
+          "contents": [
+
+          ]
         }
       ]
     }

@@ -73,9 +73,9 @@ void Adventure::gameInput() {
 		string delimiter = " ";
 		auto tokens = split(input, delimiter);
 		badInput = cmdManager.executeCommand(tokens[0],tokens,*this);
-		if (badInput.first) {
-			cout << badInput.second << endl;
-		}
+		//if (badInput.first) { taken out for debug purposes
+		cout << badInput.second << endl;
+		//}
 	}
 }
 

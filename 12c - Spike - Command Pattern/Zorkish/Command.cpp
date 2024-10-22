@@ -61,7 +61,7 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 	bool badInput = true;
 	if (args.size() > 1) {
 		if (args[1] == "AT") {
-			if (adventure.graph[adventure.current].contents.count(args[2])) {
+			if (adventure.graph[adventure.current].contents.count(args[2])) {//if graph contents contains entity with key ars[2]
 				const auto& ent = adventure.graph[adventure.current].contents[args[2]];
 				cout << "Looking at: " << ent.name << " | " << ent.description << endl;
 				badInput = false;
@@ -91,7 +91,19 @@ string LookCommand::syntax() {
 
 //ALIAS command
 pair<bool, string> AliasCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "Alias not implemented yet");
+	string resultString = "Incorrect syntax for ALIAS, use HELP";
+	bool badInput = true;
+	if (args.size() == 4) {
+		if (args[2] == "TO" && adventure.cmdManager.commands.count(args[1])) {//if cmd manager commands contain command with key args[1]
+			Command* temp = adventure.cmdManager.commands[args[1]];
+			adventure.cmdManager.commands.erase(args[1]);
+			adventure.cmdManager.commands[args[3]] = temp;
+			badInput = false;
+			resultString = "ALIAS done: " + args[1] + " changed to " + args[3];
+		}
+	}
+	
+	return pair<bool, string>(badInput, resultString);
 }
 
 string AliasCommand::syntax() {

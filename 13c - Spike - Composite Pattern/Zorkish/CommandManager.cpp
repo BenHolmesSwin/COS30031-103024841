@@ -13,5 +13,5 @@ pair<bool, string> CommandManager::executeCommand(const string& commandName, vec
 		pair<bool, string> result = commands[commandName]->execute(args, adventure);
 		return result;
 	}
-	return pair<bool, string>(false, "Command not in command list. Try HELP if dont know any commands");
+	return pair<bool, string>(true, "Command not in command list. Try HELP if dont know any commands");
 }

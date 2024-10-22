@@ -199,6 +199,34 @@ string QuitCommand::syntax(string cmdName) {
 }
 
 //TAKE command
+string takeFrom(vector<string> args, entity::Entity& ent, Adventure& adventure) {
+	string result;
+	if (ent.inventory.count(args[1])) {//if entity id1 is in id2's inventory
+		auto item = ent.inventory[args[1]];
+		if (ent.open) {
+			if (item.carry) {
+				adventure.player.addItem(item.id, item);
+				ent.inventory.erase(args[1]);
+				cout << item.name << " has been added to player inventory from " << ent.name << endl;
+				result = "TAKE from ent to inv";
+			}
+			else {
+				cout << "This item is too big to carry" << endl;
+				result = "TAKE from ent to inv Fail big";
+			}
+		}
+		else {
+			cout << "This " + ent.name + " is closed!" << endl;
+			result = "TAKE from ent to inv Fail close";
+		}
+	}
+	else {
+		cout << "This item is not in " + ent.name + "'s inventory" << endl;
+		result = "TAKE loc to inv";
+	}
+	return result;
+}
+
 pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventure) {
 	string resultString = "TAKE failed, check input items have no typos";
 	bool badInput = true;
@@ -217,33 +245,18 @@ pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventur
 			badInput = false;
 		}
 	}
-	else if (args.size() == 4 && args[2] == "FROM" && adventure.graph[adventure.current].contents.count(args[3])) {// if command is TAKE_id_FROM_id and current location cotains id2 (args[3])
-		auto ent = adventure.graph[adventure.current].contents[args[3]]; // ent = entity id2
-		if (ent.inventory.count(args[1])) {//if entity id1 is in id2's inventory
-			auto item = ent.inventory[args[1]];
-			if (ent.open) {
-				if (item.carry) {
-					adventure.player.addItem(item.id, item);
-					ent.inventory.erase(args[1]);
-					cout << item.name << " has been added to player inventory from " << ent.name << endl;
-					resultString = "TAKE from ent to inv";
-					badInput = false;
-				}
-				else {
-					cout << "This item is too big to carry" << endl;
-					resultString = "TAKE from ent to inv Fail big";
-					badInput = false;
-				}
-			}
-			else {
-				cout << "This " + ent.name + " is closed!" << endl;
-				resultString = "TAKE from ent to inv Fail close";
-				badInput = false;
-			}
+	else if (args.size() == 4 && args[2] == "FROM" ) {// if command is TAKE_id_FROM_id and current location cotains id2 (args[3])
+		if (adventure.graph[adventure.current].contents.count(args[3])) {//check if id2 is in current
+			resultString = takeFrom(args,adventure.graph[adventure.current].contents[args[3]],adventure);
+			badInput = false;
+		}
+		else if (adventure.player.inventory.count(args[3])) {//check if item 2 is in player (for bags that can be carried
+			resultString = takeFrom(args, adventure.player.inventory[args[3]], adventure);
+			badInput = false;
 		}
 		else {
-			cout << "This item is not in " + ent.name + "'s inventory" << endl;
-			resultString = "TAKE loc to inv";
+			cout << "There is no item " << args[3] << " in current location or player inventory" << endl;
+			resultString = "TAKE no id 2";
 			badInput = false;
 		}
 	}
@@ -255,8 +268,51 @@ string TakeCommand::syntax(string cmdName) {
 }
 
 //PUT command
+string putIn(vector<string> args, entity::Entity& ent, Adventure& adventure) {
+	string result;
+	auto item = ent.inventory[args[1]];
+	if (ent.open) {
+		ent.inventory[item.id] = item;
+		adventure.player.inventory.erase(args[1]);
+		cout << item.name << " has been added to player inventory from " << ent.name << endl;
+		result = "TAKE from ent to inv";
+	}
+	else {
+		cout << "This " + ent.name + " is closed!" << endl;
+		result = "TAKE from ent to inv Fail close";
+	}
+	return result;
+}
+
 pair<bool, string> PutCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "PUT not implemented yet");
+	string resultString = "PUT failed, this item is not in your inventory";
+	bool badInput = true;
+	if (adventure.player.inventory.count(args[1])) {
+		if (args.size() == 2) {
+			auto ent = adventure.player.inventory[args[1]];
+			adventure.graph[adventure.current].contents[ent.id] = ent;
+			adventure.player.inventory.erase(args[1]);
+			cout << ent.name << " has been added to current location" << endl;
+			resultString = "PUT inv to loc";
+			badInput = false;
+		}
+		else if (args.size() == 4 && args[2] == "IN") {// if command is PUT_id_IN_id
+			if (adventure.graph[adventure.current].contents.count(args[3])) {//check if id2 is in current
+				resultString = putIn(args, adventure.graph[adventure.current].contents[args[3]], adventure);
+				badInput = false;
+			}
+			else if (adventure.player.inventory.count(args[3])) {//check if item 2 is in player (for bags that can be carried)
+				resultString = putIn(args, adventure.player.inventory[args[3]], adventure);
+				badInput = false;
+			}
+			else {
+				cout << "There is no item " << args[3] << " in current location or player inventory" << endl;
+				resultString = "PUT no id 2";
+				badInput = false;
+			}
+		}
+	}
+	return pair<bool, string>(badInput, resultString);
 }
 
 string PutCommand::syntax(string cmdName) {

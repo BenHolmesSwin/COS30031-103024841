@@ -14,7 +14,6 @@ int main(int argc, char* argv[])
     Adventure adventure(argv[1]);
     cout << "Welcome to Zorkish: Adventure" << endl;
     while (adventure.running) {
-        adventure.gameRender();
         adventure.gameInput();
     }
 	cout << "Thanks for playing!" << endl;

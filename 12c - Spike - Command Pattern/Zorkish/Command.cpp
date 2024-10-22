@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//execute commands will return to badInput at the adventure.gameInput() level, meaning to keep in the loop, the badInput result will be true
+//execute commands will return to badInput at the adventure.gameInput() level, meaning to keep in the input loop, the badInput result will be true
 
 pair<bool, string> GoCommand::execute( vector<string> args,Adventure& adventure) {
 	string resultString = "No matching connection, use LOOK to see possible paths";
@@ -43,16 +43,46 @@ string HelpCommand::syntax() {
 
 //INVENTORY command
 pair<bool, string> InventoryCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "Inventory not implemented yet");
+	cout << "Inventory:" << endl;
+	for (const auto& ent : adventure.player.inventory) {
+		cout << "   " << ent.first << endl;
+	}
+	cout << "=====" << endl;
+	return pair<bool, string>(false, "INVENTORY done");
 }
 
 string InventoryCommand::syntax() {
-	return "INVENTORY || displays players current inventory";
+	return "INVENTORY || displays players current inventory as ids";
 }
 
 //LOOK command
 pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "Look not implemented yet");
+	string resultString = "No matching item, use LOOK to see possible paths";
+	bool badInput = true;
+	if (args.size() > 1) {
+		if (args[1] == "AT") {
+			if (adventure.graph[adventure.current].contents.count(args[2])) {
+				const auto& ent = adventure.graph[adventure.current].contents[args[2]];
+				cout << "Looking at: " << ent.name << " | " << ent.description << endl;
+				badInput = false;
+				resultString = "LOOK AT done";
+			}
+		}
+	}
+	else {
+		cout << "Paths from here: ";
+		for (string path : adventure.graph[adventure.current].connections) {
+			cout << path << " | ";
+		}
+		cout << endl;
+		cout << adventure.graph[adventure.current].name << " contains:" << endl;
+		for (const auto& ent : adventure.graph[adventure.current].contents) {
+			cout << "   " << ent.first << endl;
+		}
+		badInput = false;
+		resultString = "LOOK done";
+	}
+	return pair<bool, string>(badInput, resultString);
 }
 
 string LookCommand::syntax() {

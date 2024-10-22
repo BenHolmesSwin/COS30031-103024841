@@ -61,28 +61,13 @@ vector<string> split(string& s, const string& delimiter) {// split tokens
 	return tokens;
 }
 
-//renders current location
-void Adventure::gameRender() {
-	cout << "You are currently at: " << graph[current].name << endl;
-	cout << graph[current].description << endl;
-	//this section is for testing adding of entitys
-	cout << "contents: " << endl;
-	for(const auto& ent : graph[current].contents)
-	{
-		cout << ent.first << ":" << ent.second.description << endl;
-	}
-
-}
-
 void Adventure::gameInput() {
+
+	cout << "You are currently at: " << graph[current].name << endl;
+
 	pair<bool,string> badInput = pair<bool,string>(true,"inital");
 	string input;
 	while (badInput.first) {
-		cout << "You may GO to: ";
-		for (string s : graph[current].connections) {
-			cout << s << " | ";
-		}
-		cout << endl;
 		cout << ":> ";
 		getline(cin, input);
 		string delimiter = " ";

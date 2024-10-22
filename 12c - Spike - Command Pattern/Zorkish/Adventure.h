@@ -17,6 +17,5 @@ public:
 	bool running = true;
 	map<string,location::Location> graph;
 	void start(json data);
-	void gameRender();
 	void gameInput();
 };

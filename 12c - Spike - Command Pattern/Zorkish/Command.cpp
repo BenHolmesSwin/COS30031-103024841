@@ -70,7 +70,7 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 		}
 	}
 	else {
-		cout << "Paths from here: ";
+		cout << "Access from here: ";
 		for (string path : adventure.graph[adventure.current].connections) {
 			cout << path << " | ";
 		}
@@ -112,7 +112,23 @@ string AliasCommand::syntax() {
 
 //DEBUG command
 pair<bool, string> DebugCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "Debug not implemented yet");
+	cout << "========DEBUG==========" << endl;
+	for (const auto& loc : adventure.graph) {
+		cout << "Id: " << loc.first << ":" << endl;
+		cout << loc.second.name << " : " << loc.second.description << endl;
+		cout << "    Access from here: ";
+		for (string path : loc.second.connections) {
+			cout << path << " | ";
+		}
+		cout << endl;
+		cout << "\tContains:" << endl;
+		for (const auto& ent : loc.second.contents) {
+			cout << "\t" << ent.first << " : " << ent.second.description << endl;
+		}
+		cout << endl;
+	}
+	cout << "======================" << endl;
+	return pair<bool, string>(false, "DEBUG Done");
 }
 
 string DebugCommand::syntax() {

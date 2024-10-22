@@ -270,11 +270,11 @@ string TakeCommand::syntax(string cmdName) {
 //PUT command
 string putIn(vector<string> args, entity::Entity& ent, Adventure& adventure) {
 	string result;
-	auto item = ent.inventory[args[1]];
+	auto item = adventure.player.inventory[args[1]];
 	if (ent.open) {
 		ent.inventory[item.id] = item;
 		adventure.player.inventory.erase(args[1]);
-		cout << item.name << " has been added to player inventory from " << ent.name << endl;
+		cout << item.name << " has been put in " << ent.name << " from player inventory" << endl;
 		result = "TAKE from ent to inv";
 	}
 	else {

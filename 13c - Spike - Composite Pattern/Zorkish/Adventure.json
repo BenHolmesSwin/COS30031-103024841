@@ -63,15 +63,16 @@
           "carry": true
         },
         {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
+          "id": "chest",
+          "name": "Chest",
+          "desc": "A fancy chest containing items",
           "open": false,
+          "locked": true,
           "inventory": [
             {
-              "id": "apple",
-              "name": "Apple",
-              "desc": "A fresh apple",
+              "id": "silver",
+              "name": "Silver Bar",
+              "desc": "A silver bar",
               "carry": true
             }
           ]
@@ -89,18 +90,17 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
           "open": false,
           "inventory": [
-
+            {
+              "id": "dead rat",
+              "name": "Dead Rat",
+              "desc": "A dead rat",
+              "carry": true
+            }
           ]
         }
       ]
@@ -114,18 +114,24 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
+          "id": "skeleton",
+          "name": "Skeleton",
+          "desc": "A moving skeleton",
+          "carry": false
         },
         {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
+          "id": "chest",
+          "name": "Chest",
+          "desc": "A fancy chest containing items",
           "open": false,
+          "locked": true,
           "inventory": [
-
+            {
+              "id": "gold",
+              "name": "Gold Bar",
+              "desc": "A gold bar",
+              "carry": true
+            }
           ]
         }
       ]
@@ -141,19 +147,10 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
+          "id": "dog",
+          "name": "Dog",
+          "desc": "A hurt dog",
+          "carry": false
         }
       ]
     },
@@ -168,19 +165,10 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
+          "id": "wheat",
+          "name": "Wheat",
+          "desc": "Some wheat",
           "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
         }
       ]
     },
@@ -193,21 +181,6 @@
         "fort"
       ],
       "inventory": [
-        {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
-        }
       ]
     },
     {
@@ -221,18 +194,17 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
           "open": false,
           "inventory": [
-
+            {
+              "id": "ration",
+              "name": "Rations",
+              "desc": "Some soldiers rations",
+              "carry": true
+            }
           ]
         }
       ]
@@ -247,19 +219,10 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
+          "id": "leather armor",
+          "name": "Leather",
+          "desc": "Some leathor armor",
           "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
         }
       ]
     },
@@ -279,13 +242,10 @@
           "carry": true
         },
         {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
+          "id": "sticks",
+          "name": "Sticks",
+          "desc": "A bunch of small sticks",
+          "carry": true
         }
       ]
     },
@@ -333,13 +293,10 @@
           "carry": true
         },
         {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
+          "id": "wizard",
+          "name": "Wizard",
+          "desc": "An old wizard",
+          "carry": false
         }
       ]
     },
@@ -353,19 +310,10 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
+          "id": "water",
+          "name": "Water",
+          "desc": "Fresh water",
           "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
         }
       ]
     },
@@ -380,18 +328,17 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
           "open": false,
           "inventory": [
-
+            {
+              "id": "firewood",
+              "name": "Firewood",
+              "desc": "a bundle of Firewood",
+              "carry": true
+            }
           ]
         }
       ]
@@ -405,19 +352,10 @@
       ],
       "inventory": [
         {
-          "id": "apple",
-          "name": "Apple",
-          "desc": "A fresh apple",
-          "carry": true
-        },
-        {
-          "id": "barrel",
-          "name": "Barrel",
-          "desc": "A Barrel containing items",
-          "open": false,
-          "inventory": [
-
-          ]
+          "id": "goblin",
+          "name": "Goblin",
+          "desc": "A mangy Goblin",
+          "carry": false
         }
       ]
     }

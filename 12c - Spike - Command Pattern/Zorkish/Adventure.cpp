@@ -59,6 +59,12 @@ vector<string> split(string& s, const string& delimiter) {// split tokens
 void Adventure::gameRender() {
 	cout << "You are currently at: " << graph[current].name << endl;
 	cout << graph[current].description << endl;
+	//this section is for testing adding of entitys
+	cout << "contents: " << endl;
+	for(const auto& ent : graph[current].contents)
+	{
+		cout << ent.first << ":" << ent.second.description << endl;
+	}
 
 }
 

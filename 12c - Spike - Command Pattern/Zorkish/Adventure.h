@@ -16,6 +16,7 @@ public:
 	CommandManager cmdManager;
 	bool running = true;
 	map<string,location::Location> graph;
-	void start(json data);
 	void gameInput();
+private:
+	void start(json data);
 };

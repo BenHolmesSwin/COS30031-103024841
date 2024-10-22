@@ -14,7 +14,7 @@ namespace entity {
 		string id;
 		string name;
 		string description;
-		bool carry;
+		bool carry = true;
 		bool open = true;
 		bool locked = false;
 		map<string, Entity> inventory;

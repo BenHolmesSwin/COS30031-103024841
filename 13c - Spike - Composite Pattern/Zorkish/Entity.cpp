@@ -14,13 +14,13 @@ namespace entity {
 	}
 
 }
+
+//if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .inventory = entity::createinventory(ent);
 namespace bag {
-	//if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .inventory = entity::createinventory(ent);
 	void from_json(const json& j, Bag& b) {
 		j.at("id").get_to(b.id);
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
-		j.at("carry").get_to(b.carry);
 		for (const auto& ent : j["inventory"]) {
 			b.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}

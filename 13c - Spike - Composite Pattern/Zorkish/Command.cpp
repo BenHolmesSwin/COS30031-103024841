@@ -110,14 +110,12 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 				resultString = "LOOK AT done";
 			}
 		}else if (args[1] == "IN") {
-			if (adventure.graph[adventure.current].contents.count(args[2])) {//if graph contents contains entity with key ars[2]
-				const auto& ent = adventure.graph[adventure.current].contents[args[2]];
-				resultString = lookIn(ent);
+			if (adventure.graph[adventure.current].contents.count(args[2])) {//if graph contents contains entity with key args[2]
+				resultString = lookIn(adventure.graph[adventure.current].contents[args[2]]);
 				badInput = false;
 			}
-			else if (adventure.player.inventory.count(args[2])) {
-				const auto& ent = adventure.player.inventory[args[2]];
-				resultString = lookIn(ent);
+			else if (adventure.player.inventory.count(args[2])) {//if player invetory contains entity with key args[2]
+				resultString = lookIn(adventure.player.inventory[args[2]]);
 				badInput = false;
 			}
 		}

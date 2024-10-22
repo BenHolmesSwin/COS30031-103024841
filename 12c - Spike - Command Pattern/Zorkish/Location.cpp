@@ -14,7 +14,7 @@ namespace location {
 		for (const auto& ent : j["contents"]) {
 			string id = ent["id"];
 			entity::Entity entityClass = ent.template get<entity::Entity>();
-			l.contents.insert(pair<string, entity::Entity>(id, entityClass));
+			l.contents[id] = entityClass;
 		}
 	}
 }

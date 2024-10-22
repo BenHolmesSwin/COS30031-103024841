@@ -32,7 +32,7 @@ void Adventure::Start(json data){
 	for (const auto& l : data["locations"]) {
 		string id = l["id"];
 		location::Location location = l.template get<location::Location>();
-		graph.insert(pair<string,location::Location>(id, location));
+		graph[id] = location;
 	}
 	update("castle");
 }

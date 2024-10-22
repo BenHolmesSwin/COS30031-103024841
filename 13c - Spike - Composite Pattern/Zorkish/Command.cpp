@@ -204,7 +204,55 @@ string QuitCommand::syntax(string cmdName) {
 
 //TAKE command
 pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "TAKE not implemented yet");
+	string resultString = "TAKE failed, check input item has no typos";
+	bool badInput = true;
+	if (args.size() == 2 && adventure.graph[adventure.current].contents.count(args[1])) {// if command is TAKE_id and current location cotains id1 (args[1])
+		auto ent = adventure.graph[adventure.current].contents[args[1]];
+		if (ent.carry) {
+			adventure.player.addItem(ent.id, ent);
+			adventure.graph[adventure.current].contents.erase(args[1]);
+			cout << ent.name << " has been added to player inventory"<< endl;
+			resultString = "TAKE loc to inv";
+			badInput = false;
+		}
+		else {
+			cout << "This item is too big to carry" << endl;
+			resultString = "TAKE from loc to inv";
+			badInput = false;
+		}
+	}
+	else if (args.size() == 4 && args[2] == "FROM" && adventure.graph[adventure.current].contents.count(args[3])) {// if command is TAKE_id_FROM_id and current location cotains id2 (args[3])
+		auto ent = adventure.graph[adventure.current].contents[args[3]]; // ent = entity id2
+		if (ent.inventory.count(args[1])) {//if entity id1 is in id2's inventory
+			auto item = ent.inventory[args[1]];
+			if (ent.open) {
+				if (item.carry) {
+					adventure.player.addItem(item.id, item);
+					ent.inventory.erase(args[1]);
+					cout << item.name << " has been added to player inventory from " << ent.name << endl;
+					resultString = "TAKE from ent to inv";
+					badInput = false;
+				}
+				else {
+					cout << "This item is too big to carry" << endl;
+					resultString = "TAKE from ent to inv Fail big";
+					badInput = false;
+				}
+			}
+			else {
+				cout << "This " + ent.name + " is closed!" << endl;
+				resultString = "TAKE from ent to inv Fail close";
+				badInput = false;
+			}
+		}
+		else {
+			cout << "This item is not in " + ent.name + "'s inventory" << endl;
+			resultString = "TAKE loc to inv";
+			badInput = false;
+		}
+		
+	}
+	return pair<bool, string>(badInput, resultString);
 }
 
 string TakeCommand::syntax(string cmdName) {

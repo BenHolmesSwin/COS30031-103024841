@@ -77,7 +77,7 @@ void Adventure::gameInput() {
 		auto tokens = split(input, delimiter);
 		badInput = cmdManager.executeCommand(tokens[0],tokens,*this);
 		if (badInput.first) {
-			cout << badInput.second << endl;
+			cout << badInput.second << " Try Again!" << endl;
 		}
 	}
 }

@@ -14,7 +14,6 @@ bool entityContentsCheck(const entity::Entity& ent) {
 }
 
 //execute commands will return to badInput at the adventure.gameInput() level, meaning to keep in the input loop, the badInput result will be true
-
 pair<bool, string> GoCommand::execute( vector<string> args,Adventure& adventure) {
 	string resultString = "No matching connection, use LOOK to see possible paths";
 	bool badInput = true;
@@ -88,7 +87,7 @@ string lookIn(const entity::Entity& ent) {
 	}
 	else
 	{
-		resultString = "Nothing to LOOK IN";
+		cout << ent.name <<  " has nothing to LOOK IN" << endl;
 	}
 	return  resultString;
 }
@@ -142,9 +141,6 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 string LookCommand::syntax(string cmdName) {
 	return  cmdName + " || displays current locations paths and entities || "+ cmdName + "_AT_[id] || displays entity with [id] description";
 }
-
-
-
 
 //ALIAS command
 pair<bool, string> AliasCommand::execute(vector<string> args, Adventure& adventure) {
@@ -204,7 +200,7 @@ string QuitCommand::syntax(string cmdName) {
 
 //TAKE command
 pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventure) {
-	string resultString = "TAKE failed, check input item has no typos";
+	string resultString = "TAKE failed, check input items have no typos";
 	bool badInput = true;
 	if (args.size() == 2 && adventure.graph[adventure.current].contents.count(args[1])) {// if command is TAKE_id and current location cotains id1 (args[1])
 		auto ent = adventure.graph[adventure.current].contents[args[1]];
@@ -250,7 +246,6 @@ pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventur
 			resultString = "TAKE loc to inv";
 			badInput = false;
 		}
-		
 	}
 	return pair<bool, string>(badInput, resultString);
 }
@@ -269,8 +264,53 @@ string PutCommand::syntax(string cmdName) {
 }
 
 //OPEN command
+string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure) {
+	string result;
+	if (ent.open) {
+		cout << ent.name << " is already open" << endl;
+		result = "OPEN already open";
+	}
+	else if (ent.locked) {
+		if (args.size() == 4) {
+			if (adventure.player.inventory.count(args[3]) && args[3] == "key") {//needs two sperate ifs cause of potential out of index errors
+				ent.open = true;
+				ent.locked = false;
+				cout << ent.name << " opened with key!" << endl;
+				result = "OPEN opened with key";
+			}
+			else {
+				cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
+				result = "OPEN locked no key";
+			}
+		}
+		else {
+			cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
+			result = "OPEN locked no key";
+		}
+	}
+	else {
+		ent.open = true;
+		cout << ent.name << " opened!" << endl;
+		result = "OPEN opened";
+	}
+	return result;
+}
+
 pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventure) {
-	return pair<bool, string>(true, "OPEN not implemented yet");
+	string resultString = "This entity does not exist in this location or your inventory, use look to find out whats around you";
+	bool badInput = true;
+	if (args.size() > 1) {//check to prevent out of index errors
+		if (adventure.graph[adventure.current].contents.count(args[1]) || adventure.player.inventory.count(args[1])) {
+			if (adventure.graph[adventure.current].contents.count(args[1])) {
+				resultString = openEntity(args, adventure.graph[adventure.current].contents[args[1]], adventure);
+			}
+			else {
+				resultString = openEntity(args, adventure.player.inventory[args[1]], adventure);
+			}
+			badInput = false;
+		}
+	}
+	return pair<bool, string>(badInput, resultString);
 }
 
 string OpenCommand::syntax(string cmdName) {

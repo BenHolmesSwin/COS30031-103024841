@@ -1,7 +1,7 @@
 {
   "player": {
     "health": 100,
-    "contents": [
+    "inventory": [
       {
         "id": "key",
         "name": "Key",
@@ -25,7 +25,7 @@
         "sewers",
         "capital"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -36,7 +36,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
             {
               "id": "apple",
               "name": "Apple",
@@ -56,7 +57,7 @@
         "castle",
         "fields"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -67,7 +68,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -80,7 +82,7 @@
       "connections": [
         "sewers"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -91,7 +93,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -106,7 +109,7 @@
         "fields",
         "forest"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -117,7 +120,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -132,7 +136,7 @@
         "forest",
         "pass"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -143,7 +147,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -157,7 +162,7 @@
         "fields",
         "fort"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -168,7 +173,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -183,7 +189,7 @@
         "town",
         "woods"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -194,7 +200,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -208,7 +215,7 @@
         "fort",
         "woods"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -219,7 +226,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -233,7 +241,7 @@
         "fort",
         "town"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -244,7 +252,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -261,7 +270,7 @@
         "river",
         "village"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -272,7 +281,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -285,7 +295,7 @@
       "connections": [
         "forest"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -296,7 +306,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -310,7 +321,7 @@
         "forest",
         "village"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -321,7 +332,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -336,7 +348,7 @@
         "river",
         "caves"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -347,7 +359,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }
@@ -360,7 +373,7 @@
       "connections": [
         "village"
       ],
-      "contents": [
+      "inventory": [
         {
           "id": "apple",
           "name": "Apple",
@@ -371,7 +384,8 @@
           "id": "barrel",
           "name": "Barrel",
           "desc": "A Barrel containing items",
-          "contents": [
+          "open": false,
+          "inventory": [
 
           ]
         }

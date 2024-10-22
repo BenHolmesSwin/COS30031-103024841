@@ -68,16 +68,21 @@ string lookIn(const entity::Entity& ent) {
 	string resultString = "This item has no possible contents";
 	if (entityContentsCheck(ent)) {
 		cout << "Looking in: " << ent.name << endl;
-		if (ent.contents.size() > 0)
-		{
-			cout << "Contains: ";
-			for (const auto& con : ent.contents) {
-				cout << con.first << " | ";
+		if (ent.open) {
+			if (ent.inventory.size() > 0)
+			{
+				cout << "Contains: ";
+				for (const auto& con : ent.inventory) {
+					cout << con.first << " | ";
+				}
+				cout << endl;
 			}
-			cout << endl;
+			else {
+				cout << "Nothing in this " + ent.name << endl;
+			}
 		}
 		else {
-			cout << "Nothing in this " + ent.name << endl;
+			cout << "This " + ent.name + " is closed!" << endl;
 		}
 		resultString = "LOOK IN done";
 	}
@@ -195,5 +200,32 @@ pair<bool, string> QuitCommand::execute(vector<string> args, Adventure& adventur
 
 string QuitCommand::syntax(string cmdName) {
 	return cmdName + " || Exits program";
+}
+
+//TAKE command
+pair<bool, string> TakeCommand::execute(vector<string> args, Adventure& adventure) {
+	return pair<bool, string>(true, "TAKE not implemented yet");
+}
+
+string TakeCommand::syntax(string cmdName) {
+	return cmdName + "_[id1]_[From_Id2] || Takes entity id1 into the players inventory (from entity 2 if used)";
+}
+
+//PUT command
+pair<bool, string> PutCommand::execute(vector<string> args, Adventure& adventure) {
+	return pair<bool, string>(true, "PUT not implemented yet");
+}
+
+string PutCommand::syntax(string cmdName) {
+	return cmdName + "[id1]_IN_[id2] || Puts entity id1 in entity id2 inventory (cannot put item in player use TAKE FROM)";
+}
+
+//OPEN command
+pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventure) {
+	return pair<bool, string>(true, "OPEN not implemented yet");
+}
+
+string OpenCommand::syntax(string cmdName) {
+	return cmdName + "_[id1]_[WITH_id2] || Opens entity id1 if close (use WITH id2 if locked, entity id2 needs to be a key)";
 }
 

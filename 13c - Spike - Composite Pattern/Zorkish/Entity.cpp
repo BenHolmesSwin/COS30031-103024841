@@ -15,14 +15,14 @@ namespace entity {
 
 }
 namespace bag {
-	//if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .contents = entity::createContents(ent);
+	//if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .inventory = entity::createinventory(ent);
 	void from_json(const json& j, Bag& b) {
 		j.at("id").get_to(b.id);
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
 		j.at("carry").get_to(b.carry);
-		for (const auto& ent : j["contents"]) {
-			b.contents[ent["id"]] = ent.template get<entity::Entity>();
+		for (const auto& ent : j["inventory"]) {
+			b.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
 	}
 }
@@ -32,8 +32,9 @@ namespace pouch {
 		j.at("name").get_to(p.name);
 		j.at("desc").get_to(p.description);
 		j.at("locked").get_to(p.locked);
-		for (const auto& ent : j["contents"]) {
-			p.contents[ent["id"]] = ent.template get<entity::Entity>();
+		j.at("open").get_to(p.open);
+		for (const auto& ent : j["inventory"]) {
+			p.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
 	}
 }
@@ -42,8 +43,9 @@ namespace barrel {
 		j.at("id").get_to(b.id);
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
-		for (const auto& ent : j["contents"]) {
-			b.contents[ent["id"]] = ent.template get<entity::Entity>();
+		j.at("open").get_to(b.open);
+		for (const auto& ent : j["inventory"]) {
+			b.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
 	}
 }
@@ -53,15 +55,16 @@ namespace chest {
 		j.at("name").get_to(c.name);
 		j.at("desc").get_to(c.description);
 		j.at("locked").get_to(c.locked);
-		for (const auto& ent : j["contents"]) {
-			c.contents[ent["id"]] = ent.template get<entity::Entity>();
+		j.at("open").get_to(c.open);
+		for (const auto& ent : j["inventory"]) {
+			c.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
 	}
 }
 
 map<string, entity::Entity> createContents(const json& j) {
 	map<string, entity::Entity> result;
-	for (const auto& ent : j["contents"]) {
+	for (const auto& ent : j["inventory"]) {
 		if (ent["name"] == "Bag") {
 			result[ent["id"]] = ent.template get<bag::Bag>();
 		}

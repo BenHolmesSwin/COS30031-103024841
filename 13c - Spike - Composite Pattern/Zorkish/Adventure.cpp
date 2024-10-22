@@ -44,6 +44,9 @@ void Adventure::start(json data){
 	cmdManager.commands["ALIAS"] = new AliasCommand();
 	cmdManager.commands["DEBUG"] = new DebugCommand();
 	cmdManager.commands["QUIT"] = new QuitCommand();
+	cmdManager.commands["TAKE"] = new TakeCommand();
+	cmdManager.commands["PUT"] = new PutCommand();
+	cmdManager.commands["OPEN"] = new OpenCommand();
 }
 
 

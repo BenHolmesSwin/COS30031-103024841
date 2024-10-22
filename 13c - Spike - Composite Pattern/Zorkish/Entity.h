@@ -15,8 +15,9 @@ namespace entity {
 		string name;
 		string description;
 		bool carry;
+		bool open = true;
 		bool locked = false;
-		map<string, Entity> contents;
+		map<string, Entity> inventory;
 	};
 }
 namespace bag {

@@ -47,3 +47,18 @@ class QuitCommand : public Command {
 	string syntax(string cmdName) override;
 	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
 };
+
+class TakeCommand : public Command {
+	string syntax(string cmdName) override;
+	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
+};
+
+class PutCommand : public Command {
+	string syntax(string cmdName) override;
+	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
+};
+
+class OpenCommand : public Command {
+	string syntax(string cmdName) override;
+	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
+};

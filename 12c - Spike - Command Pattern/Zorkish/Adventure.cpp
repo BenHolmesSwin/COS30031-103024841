@@ -4,6 +4,7 @@
 #include "json.hpp"
 #include "Location.h"
 #include "Adventure.h"
+#include "Command.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -25,21 +26,26 @@ Adventure::Adventure(const char* fileName)
 		cout << "Parse error at byte " << e.byte << ": " << e.what() << endl;
 	}
 	file.close();
-	Start(jsonData);
+	start(jsonData);
 }
 
-void Adventure::Start(json data){
+void Adventure::start(json data){
+	data.at("player").get_to(player);
 	for (const auto& l : data["locations"]) {
 		string id = l["id"];
 		location::Location location = l.template get<location::Location>();
 		graph[id] = location;
 	}
-	update("castle");
+	current = "castle";
+	cmdManager.commands["GO"] = new GoCommand();
+	cmdManager.commands["HELP"] = new HelpCommand();
+	cmdManager.commands["INVENTORY"] = new InventoryCommand();
+	cmdManager.commands["LOOK"] = new LookCommand();
+	cmdManager.commands["ALIAS"] = new AliasCommand();
+	cmdManager.commands["DEBUG"] = new DebugCommand();
+	cmdManager.commands["QUIT"] = new QuitCommand();
 }
 
-void Adventure::update(string s) {
-	current = s;
-}
 
 vector<string> split(string& s, const string& delimiter) {// split tokens
 	vector<string> tokens;
@@ -68,11 +74,10 @@ void Adventure::gameRender() {
 
 }
 
-string Adventure::gameInput() {
-	bool badInput = true;
+void Adventure::gameInput() {
+	pair<bool,string> badInput = pair<bool,string>(true,"inital");
 	string input;
-	string result;
-	while (badInput) {
+	while (badInput.first) {
 		cout << "You may GO to: ";
 		for (string s : graph[current].connections) {
 			cout << s << " | ";
@@ -82,35 +87,11 @@ string Adventure::gameInput() {
 		getline(cin, input);
 		string delimiter = " ";
 		auto tokens = split(input, delimiter);
-		if (tokens.size() == 2) {
-			if (tokens[0] == "GO") {
-				//check all options against input
-				for (string posibleOption : graph[current].connections) {
-					if (posibleOption == tokens[1]) {
-						result = posibleOption;
-						badInput = false;
-					}
-				}
-
-			}
-		}//check input for QUIT
-		else if (tokens[0] == "QUIT") {
-			result = "QUIT";
-			badInput = false;
-		}
-		if(badInput){
-			cout << "Bad Input. Try Again:" << endl;
+		badInput = cmdManager.executeCommand(tokens[0],tokens,*this);
+		if (badInput.first) {
+			cout << badInput.second << endl;
 		}
 	}
-	return result;
-}
-
-bool Adventure::gameUpdate(string input) {
-	if (input == "QUIT") {
-		return false;
-	}
-	update(input);
-	return true;
 }
 
 

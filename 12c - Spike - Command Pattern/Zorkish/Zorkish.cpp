@@ -8,16 +8,14 @@
 
 using namespace std;
 
-bool running = true;
 
 int main(int argc, char* argv[])
 {
     Adventure adventure(argv[1]);
     cout << "Welcome to Zorkish: Adventure" << endl;
-    while (running) {
+    while (adventure.running) {
         adventure.gameRender();
-        string option = adventure.gameInput();
-		running = adventure.gameUpdate(option);
+        adventure.gameInput();
     }
 	cout << "Thanks for playing!" << endl;
 }

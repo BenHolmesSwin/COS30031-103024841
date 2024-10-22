@@ -1,5 +1,20 @@
 {
-  "locations":[
+  "player": {
+    "health": 100,
+    "inventory": [
+      {
+        "id": "key",
+        "name": "Key",
+        "desc": "A key"
+      },
+      {
+        "id": "sword",
+        "name": "Sword",
+        "desc": "A nice iron sword"
+      }
+    ]
+  },
+  "locations": [
     {
       "id": "castle",
       "name": "Castle",

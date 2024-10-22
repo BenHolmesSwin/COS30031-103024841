@@ -2,19 +2,21 @@
 
 #include "Location.h"
 #include "json.hpp"
+#include "Player.h"
+#include "CommandManager.h"
 
 using json = nlohmann::json;
 
 class Adventure
 {
 public:
-
 	Adventure(const char* fileName);
 	string current;
-	void Start(json data);
+	player::Player player;
+	CommandManager cmdManager;
+	bool running = true;
 	map<string,location::Location> graph;
-	void update(string s);
+	void start(json data);
 	void gameRender();
-	string gameInput();
-	bool gameUpdate(string input);
+	void gameInput();
 };

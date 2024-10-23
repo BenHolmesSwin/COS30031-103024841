@@ -145,12 +145,17 @@ pair<bool, string> AliasCommand::execute(vector<string> args, Adventure& adventu
 	string resultString = "Incorrect syntax for ALIAS, use HELP";
 	bool badInput = true;
 	if (args.size() == 4) {
-		if (args[2] == "TO" && adventure.cmdManager.commands.count(args[1])) {//if cmd manager commands contain command with key args[1]
+		if (adventure.cmdManager.commands.count(args[3])) {
+			cout << "This alias is already in the command list, please chose another Alias" << endl;
+			badInput = false;
+			resultString = "ALIAS done: " + args[1] + " changed to " + args[3];
+		}else if (args[2] == "TO" && adventure.cmdManager.commands.count(args[1])) {//if cmd manager commands contain command with key args[1]
 			Command* temp = adventure.cmdManager.commands[args[1]];
 			adventure.cmdManager.commands.erase(args[1]);
 			adventure.cmdManager.commands[args[3]] = temp;
 			badInput = false;
 			resultString = "ALIAS done: " + args[1] + " changed to " + args[3];
+			cout << resultString << endl;
 		}
 	}
 	
@@ -295,7 +300,11 @@ pair<bool, string> PutCommand::execute(vector<string> args, Adventure& adventure
 			badInput = false;
 		}
 		else if (args.size() == 4 && args[2] == "IN") {// if command is PUT_id_IN_id
-			if (adventure.graph[adventure.current].contents.count(args[3])) {//check if id2 is in current
+			if (args[3] == args[1]) {//check to prevent putting inside self
+				cout << "You cannot put item inside self" << endl;
+				resultString = "PUT attempt id1 in id2";
+				badInput = false;
+			}else if (adventure.graph[adventure.current].contents.count(args[3])) {//check if id2 is in current
 				resultString = putIn(args, adventure.graph[adventure.current].contents[args[3]], adventure);
 				badInput = false;
 			}

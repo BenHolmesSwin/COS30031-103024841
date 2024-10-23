@@ -34,6 +34,11 @@ void Adventure::Start(json data){
 		location::Location location = l.template get<location::Location>();
 		graph.insert(pair<string,location::Location>(id, location));
 	}
+	for (const auto& l : data["paths"]) {
+		string name = l["name"];
+		path::Path path = l.template get<path::Path>();
+		paths.insert(pair<string, path::Path>(name, path));
+	}
 	update("castle");
 }
 
@@ -78,10 +83,9 @@ string Adventure::gameInput() {
 		auto tokens = split(input, delimiter);
 		if (tokens.size() == 2) {
 			if (tokens[0] == "GO") {
-				//check all options against input
-				for (string posibleOption : graph[current].connections) {
-					if (posibleOption == tokens[1]) {
-						result = posibleOption;
+				for (string posibleOption : graph[current].connections) {//for each string in connections in current
+					if (posibleOption == tokens[1]) {//check if the connection is equal to the input
+						result = paths[posibleOption].findLoc(current);//set result to loc in path that is not current
 						badInput = false;
 					}
 				}

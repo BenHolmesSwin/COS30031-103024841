@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Adventure.cpp" />
     <ClCompile Include="Location.cpp" />
+    <ClCompile Include="Path.cpp" />
     <ClCompile Include="Zorkish.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Adventure.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Path.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

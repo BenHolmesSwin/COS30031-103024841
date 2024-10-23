@@ -1,12 +1,12 @@
 {
-  "locations":[
+  "locations": [
     {
       "id": "castle",
       "name": "Castle",
       "desc": "A big stone Castle",
       "connections": [
-        "sewers",
-        "capital"
+        "path1",
+        "path2"
       ]
     },
     {
@@ -14,9 +14,9 @@
       "name": "Sewers",
       "desc": "Sewers underneath the capital",
       "connections": [
-        "ancient",
-        "castle",
-        "fields"
+        "path1",
+        "path3",
+        "path4"
       ]
     },
     {
@@ -24,7 +24,7 @@
       "name": "Ancient City",
       "desc": "An ancient city buried underneath the capital sewers",
       "connections": [
-        "sewers"
+        "path3"
       ]
     },
     {
@@ -32,9 +32,9 @@
       "name": "Capital",
       "desc": "the castle town, centre of the country",
       "connections": [
-        "castle",
-        "fields",
-        "forest"
+        "path2",
+        "path5",
+        "path12"
       ]
     },
     {
@@ -42,9 +42,10 @@
       "name": "Fields",
       "desc": "The fields around the capital",
       "connections": [
-        "capital",
-        "forest",
-        "pass"
+        "path4",
+        "path5",
+        "path6",
+        "path11"
       ]
     },
     {
@@ -52,8 +53,8 @@
       "name": "Mountain Pass",
       "desc": "The mountain pass to the south of the nation",
       "connections": [
-        "fields",
-        "fort"
+        "path6",
+        "path7"
       ]
     },
     {
@@ -61,9 +62,9 @@
       "name": "Fort",
       "desc": "An old fort in the mountain pass",
       "connections": [
-        "pass",
-        "town",
-        "woods"
+        "path7",
+        "path8",
+        "path9"
       ]
     },
     {
@@ -71,8 +72,8 @@
       "name": "Town",
       "desc": "The border town",
       "connections": [
-        "fort",
-        "woods"
+        "path8",
+        "path10"
       ]
     },
     {
@@ -80,8 +81,8 @@
       "name": "Woods",
       "desc": "A woody area south of the pass on the border",
       "connections": [
-        "fort",
-        "town"
+        "path9",
+        "path10"
       ]
     },
     {
@@ -89,11 +90,11 @@
       "name": "Forest",
       "desc": "The forest north of the capital",
       "connections": [
-        "capital",
-        "fields",
-        "tower",
-        "river",
-        "village"
+        "path11",
+        "path12",
+        "path13",
+        "path14",
+        "path15"
       ]
     },
     {
@@ -101,7 +102,7 @@
       "name": "Tower",
       "desc": "A spooky tower in the depths of the forest",
       "connections": [
-        "forest"
+        "path13"
       ]
     },
     {
@@ -109,8 +110,8 @@
       "name": "River",
       "desc": "A small river running through the forest",
       "connections": [
-        "forest",
-        "village"
+        "path14",
+        "path16"
       ]
     },
     {
@@ -118,9 +119,9 @@
       "name": "Village",
       "desc": "The foresters village",
       "connections": [
-        "forest",
-        "river",
-        "caves"
+        "path15",
+        "path16",
+        "path17"
       ]
     },
     {
@@ -128,8 +129,95 @@
       "name": "Caves",
       "desc": "Extensive cave system full of monsters",
       "connections": [
-        "village"
+        "path17"
       ]
+    }
+  ],
+  "paths": [
+    {
+      "name": "path1",
+      "loc1": "castle",
+      "loc2": "sewers"
+    },
+    {
+      "name": "path2",
+      "loc1": "castle",
+      "loc2": "capital"
+    },
+    {
+      "name": "path3",
+      "loc1": "sewers",
+      "loc2": "ancient"
+    },
+    {
+      "name": "path4",
+      "loc1": "sewers",
+      "loc2": "fields"
+    },
+    {
+      "name": "path5",
+      "loc1": "capital",
+      "loc2": "fields"
+    },
+    {
+      "name": "path6",
+      "loc1": "fields",
+      "loc2": "pass"
+    },
+    {
+      "name": "path7",
+      "loc1": "pass",
+      "loc2": "fort"
+    },
+    {
+      "name": "path8",
+      "loc1": "fort",
+      "loc2": "town"
+    },
+    {
+      "name": "path9",
+      "loc1": "fort",
+      "loc2": "woods"
+    },
+    {
+      "name": "path10",
+      "loc1": "town",
+      "loc2": "woods"
+    },
+    {
+      "name": "path11",
+      "loc1": "fields",
+      "loc2": "forest"
+    },
+    {
+      "name": "path12",
+      "loc1": "capital",
+      "loc2": "forest"
+    },
+    {
+      "name": "path13",
+      "loc1": "forest",
+      "loc2": "tower"
+    },
+    {
+      "name": "path14",
+      "loc1": "forest",
+      "loc2": "river"
+    },
+    {
+      "name": "path15",
+      "loc1": "forest",
+      "loc2": "village"
+    },
+    {
+      "name": "path16",
+      "loc1": "river",
+      "loc2": "village"
+    },
+    {
+      "name": "path17",
+      "loc1": "village",
+      "loc2": "caves"
     }
   ]
 }

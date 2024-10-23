@@ -89,7 +89,6 @@ string Adventure::gameInput() {
 						badInput = false;
 					}
 				}
-
 			}
 		}//check input for QUIT
 		else if (tokens[0] == "QUIT") {

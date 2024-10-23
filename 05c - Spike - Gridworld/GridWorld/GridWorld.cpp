@@ -176,14 +176,14 @@ int main() {
 		cout << "You have exited the game. Thanks for playing!" << endl;
 	}
 	else if (sucess) {// check for gold reached
-		cout << "Wow - you’ve discovered a large chest filled with GOLD coins!" << endl;
+		cout << "Wow - you have discovered a large chest filled with GOLD coins!" << endl;
 		cout << "YOU WIN!" << endl;
-		cout << "Thanks for playing. There probably won’t be a next time." << endl;
+		cout << "Thanks for playing. There probably wont be a next time." << endl;
 	}
 	else {// this is when on 'D'
 		cout << "Arrrrgh... you have fallen down a pit and landed on spikes." << endl;
 		cout << "YOU HAVE DIED!" << endl;
-		cout << "Thanks for playing. There probably won’t be a next time." << endl;
+		cout << "Thanks for playing. There probably wont be a next time." << endl;
 	}
 	return 0;
 }

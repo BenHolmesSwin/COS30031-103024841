@@ -1,6 +1,8 @@
 
 #include "json.hpp"
 #include "Entity.h"
+#include "Message.h"
+#include "Component.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -13,6 +15,16 @@ namespace entity {
 		j.at("carry").get_to(l.carry);
 		j.at("components").get_to(l.componentsList);
 	}
+
+	void Entity::componentAdd(string id, Component* component) {
+		components[id] = component;
+	}
+
+	void Entity::recieveMessage(Message message) {
+		if (components.count(message.type)) {
+			components[message.type]->execute();
+		}
+	}
 }
 
 //if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .inventory = entity::createinventory(ent);
@@ -21,8 +33,6 @@ namespace bag {
 		j.at("id").get_to(b.id);
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
-		j.at("locked").get_to(b.locked);
-		j.at("open").get_to(b.open);
 		j.at("components").get_to(b.componentsList);
 		for (const auto& ent : j["inventory"]) {
 			b.inventory[ent["id"]] = ent.template get<entity::Entity>();

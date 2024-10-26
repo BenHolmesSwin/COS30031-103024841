@@ -134,6 +134,8 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="Location.cpp" />
+    <ClCompile Include="MessageBoard.cpp" />
+    <ClCompile Include="MessageBoard.h" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Zorkish.cpp" />
   </ItemGroup>
@@ -150,6 +152,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

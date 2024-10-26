@@ -6,6 +6,7 @@
 #include "Adventure.h"
 #include "Command.h"
 #include "ComponentManager.h"
+#include "MessageBoard.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -49,7 +50,6 @@ void Adventure::start(json data){
 	cmdManager.commands["TAKE"] = new TakeCommand();
 	cmdManager.commands["PUT"] = new PutCommand();
 	cmdManager.commands["OPEN"] = new OpenCommand();
-
 }
 
 
@@ -82,6 +82,9 @@ void Adventure::gameInput() {
 		if (badInput.first) {
 			cout << badInput.second << " Try Again!" << endl;
 		}
+	}
+	while (msgBoard.areThereMessages()) {
+		msgBoard.doMessages(*this);
 	}
 }
 

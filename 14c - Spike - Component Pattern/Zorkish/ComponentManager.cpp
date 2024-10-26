@@ -9,7 +9,7 @@
 void addComponentsToEntity(entity::Entity& entity) {
 	for (auto& comp : entity.componentsList) {
 		if (comp == "open") {
-			entity.components[comp] = new OpenComponent();
+			entity.componentAdd(comp, new OpenComponent());
 		}
 	}
 }

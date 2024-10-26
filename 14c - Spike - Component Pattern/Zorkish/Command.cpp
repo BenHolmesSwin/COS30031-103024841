@@ -2,6 +2,7 @@
 
 #include "Command.h"
 #include "Adventure.h"
+#include "Component.h"
 
 using namespace std;
 
@@ -329,32 +330,45 @@ string PutCommand::syntax(string cmdName) {
 //OPEN command
 string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure) {
 	string result;
-	if (ent.open) {
-		cout << ent.name << " is already open" << endl;
-		result = "OPEN already open";
-	}
-	else if (ent.locked) {
-		if (args.size() == 4) {
-			if (adventure.player.inventory.count(args[3]) && args[3] == "key") {//needs two sperate ifs cause of potential out of index errors
-				ent.open = true;
-				ent.locked = false;
-				cout << ent.name << " opened with key!" << endl;
-				result = "OPEN opened with key";
-			}
-			else {
-				cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
-				result = "OPEN locked no key";
-			}
+	if (ent.components.count("open")) {
+		if (ent.components["open"]->check(ent)) {
+			cout << ent.name << " is already open" << endl;
+			result = "OPEN already open";
 		}
 		else {
-			cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
-			result = "OPEN locked no key";
+			bool openCheck = ent.components["open"]->execute(ent); //excute for openComponet returns true when given entity not locked (Also isnt opened if false)
+			if (!openCheck) { //check if it returned false
+				if (args.size() == 4) {// checking correct command length for OPEN entity WITH key
+					if (adventure.player.inventory.count(args[3])) {//needs two sperate ifs cause of potential out of index errors, checking have args 3 item in inventory
+						bool keyCheck = ent.components["open"]->execute(ent, args[3]); // returns false if args[3] is not "key"
+						if (keyCheck) {// check true (if true opened with key)
+							cout << ent.name << " opened with key!" << endl;
+							result = "OPEN opened with key";
+						}
+						else {
+							cout << ent.name << " is locked, that was not a key!" << endl;
+							result = "OPEN opened with key";
+						}
+					}
+					else {
+						cout << ent.name << " is locked, " << args[3] << " is not in your inventory! (use TAKE if key is in something else)" << endl;
+						result = "OPEN locked no key";
+					}
+				}
+				else { // check is incorrect command
+					cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
+					result = "OPEN locked no key";
+				}
+			}
+			else { // if check is true, it opened.
+				cout << ent.name << " opened!" << endl;
+				result = "OPEN opened";
+			}
 		}
 	}
 	else {
-		ent.open = true;
-		cout << ent.name << " opened!" << endl;
-		result = "OPEN opened";
+		cout << ent.name << " has no ability to be opened or closed" << endl;
+		result = "OPEN no need";
 	}
 	return result;
 }

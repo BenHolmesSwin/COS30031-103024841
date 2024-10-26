@@ -8,6 +8,8 @@
 using namespace std;
 using json = nlohmann::json;
 
+class Component;
+
 namespace entity {
 	struct Entity
 	{
@@ -17,7 +19,9 @@ namespace entity {
 		bool carry = true;
 		bool open = true;
 		bool locked = false;
+		vector<string> componentsList;
 		map<string, Entity> inventory;
+		map<string, Component*> components;
 	};
 }
 namespace bag {

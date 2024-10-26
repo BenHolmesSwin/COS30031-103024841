@@ -11,8 +11,8 @@ namespace entity {
 		j.at("name").get_to(l.name);
 		j.at("desc").get_to(l.description);
 		j.at("carry").get_to(l.carry);
+		j.at("components").get_to(l.componentsList);
 	}
-
 }
 
 //if i wanted to make bag and such recursive (contains other bags on start) i would just replace whats in the for loop with .inventory = entity::createinventory(ent);
@@ -21,6 +21,9 @@ namespace bag {
 		j.at("id").get_to(b.id);
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
+		j.at("locked").get_to(b.locked);
+		j.at("open").get_to(b.open);
+		j.at("components").get_to(b.componentsList);
 		for (const auto& ent : j["inventory"]) {
 			b.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
@@ -33,6 +36,7 @@ namespace pouch {
 		j.at("desc").get_to(p.description);
 		j.at("locked").get_to(p.locked);
 		j.at("open").get_to(p.open);
+		j.at("components").get_to(p.componentsList);
 		for (const auto& ent : j["inventory"]) {
 			p.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
@@ -44,6 +48,7 @@ namespace barrel {
 		j.at("name").get_to(b.name);
 		j.at("desc").get_to(b.description);
 		j.at("open").get_to(b.open);
+		j.at("components").get_to(b.componentsList);
 		for (const auto& ent : j["inventory"]) {
 			b.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}
@@ -56,6 +61,7 @@ namespace chest {
 		j.at("desc").get_to(c.description);
 		j.at("locked").get_to(c.locked);
 		j.at("open").get_to(c.open);
+		j.at("components").get_to(c.componentsList);
 		for (const auto& ent : j["inventory"]) {
 			c.inventory[ent["id"]] = ent.template get<entity::Entity>();
 		}

@@ -5,6 +5,7 @@
 #include "Location.h"
 #include "Adventure.h"
 #include "Command.h"
+#include "ComponentManager.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -36,6 +37,7 @@ void Adventure::start(json data){
 		location::Location location = l.template get<location::Location>();
 		graph[id] = location;
 	}
+	compManager.createAdventureComponents(*this);
 	current = "castle";
 	cmdManager.commands["GO"] = new GoCommand();
 	cmdManager.commands["HELP"] = new HelpCommand();
@@ -47,6 +49,7 @@ void Adventure::start(json data){
 	cmdManager.commands["TAKE"] = new TakeCommand();
 	cmdManager.commands["PUT"] = new PutCommand();
 	cmdManager.commands["OPEN"] = new OpenCommand();
+
 }
 
 

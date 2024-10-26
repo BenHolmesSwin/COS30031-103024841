@@ -342,12 +342,12 @@ string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure)
 				result = "OPEN opened with key";
 			}
 			else {
-				cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
+				cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
 				result = "OPEN locked no key";
 			}
 		}
 		else {
-			cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use FROM)" << endl;
+			cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
 			result = "OPEN locked no key";
 		}
 	}

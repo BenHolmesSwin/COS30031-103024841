@@ -25,7 +25,7 @@ void MessageBoard::doMessages(Adventure& adventure) {
 		else if (adventure.player.inventory.count(message.to)) {//checking if in inventory
 			adventure.player.inventory[message.to].recieveMessage(message, *this);
 		}
-		messages.erase(remove(begin(messages),end(messages),message));//this erases the message from the vector, need to test if works properly
+		messages.erase(remove(begin(messages),end(messages),message));//this erases the message from the vector
 	}
 }
 

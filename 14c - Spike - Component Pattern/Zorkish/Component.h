@@ -4,7 +4,7 @@
 using namespace std;
 #include "Entity.h"
 
-
+//The component execution functions use the message system as well, both were developed simultainously
 
 class Component {
 public:

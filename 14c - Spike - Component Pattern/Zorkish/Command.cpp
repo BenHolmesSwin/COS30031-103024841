@@ -335,51 +335,6 @@ string PutCommand::syntax(string cmdName) {
 }
 
 //OPEN command
-//string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure) {
-//	string result;
-//	if (ent.components.count("open")) {
-//		if (ent.components["open"]->check(ent)) {
-//			cout << ent.name << " is already open" << endl;
-//			result = "OPEN already open";
-//		}
-//		else {
-//			bool openCheck = ent.components["open"]->execute(ent); //excute for openComponet returns true when given entity not locked (Also isnt opened if false)
-//			if (!openCheck) { //check if it returned false
-//				if (args.size() == 4) {// checking correct command length for OPEN entity WITH key
-//					if (adventure.player.inventory.count(args[3])) {//needs two sperate ifs cause of potential out of index errors, checking have args 3 item in inventory
-//						bool keyCheck = ent.components["open"]->execute(ent, args[3]); // returns false if args[3] is not "key"
-//						if (keyCheck) {// check true (if true opened with key)
-//							cout << ent.name << " opened with key!" << endl;
-//							result = "OPEN opened with key";
-//						}
-//						else {
-//							cout << ent.name << " is locked, that was not a key!" << endl;
-//							result = "OPEN opened with key";
-//						}
-//					}
-//					else {
-//						cout << ent.name << " is locked, " << args[3] << " is not in your inventory! (use TAKE if key is in something else)" << endl;
-//						result = "OPEN locked no key";
-//					}
-//				}
-//				else { // check is incorrect command
-//					cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
-//					result = "OPEN locked no key";
-//				}
-//			}
-//			else { // if check is true, it opened.
-//				cout << ent.name << " opened!" << endl;
-//				result = "OPEN opened";
-//			}
-//		}
-//	}
-//	else {
-//		cout << ent.name << " has no ability to be opened or closed" << endl;
-//		result = "OPEN no need";
-//	}
-//	return result;
-//}
-
 pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventure) {
 	Message resultMsg;
 	if (args.size() > 1) {//check to prevent out of index errors
@@ -406,7 +361,7 @@ pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventur
 	}
 	else {
 		resultMsg.type = "failure";
-		resultMsg.message = "Incorrect syntax, try again.";
+		resultMsg.message = "Incorrect OPEN syntax, try again.";
 	}
 	adventure.msgBoard.addMessage(resultMsg);
 	return pair<bool, string>(false, "OPEN uses message system now");
@@ -414,5 +369,39 @@ pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventur
 
 string OpenCommand::syntax(string cmdName) {
 	return cmdName + "_[id1]_[WITH_id2] || Opens entity id1 if close (use WITH id2 if locked, entity id2 needs to be a key)";
+}
+
+//Use Command
+pair<bool, string> UseCommand::execute(vector<string> args, Adventure& adventure) {
+	Message resultMsg;
+	if (args.size() == 4) {//check to prevent out of index errors
+		if (args[2] == "ON") {
+			if (adventure.player.inventory.count(args[1]) && adventure.graph[adventure.current].contents.count(args[3])) { // check inventory has args[1] and location has args[3]
+				resultMsg.type = "use";
+				resultMsg.from = "CommandUse";
+				resultMsg.to = args[1];
+				resultMsg.additional = args[3];
+				resultMsg.message = "Using " + args[1];
+			}
+			else {
+				resultMsg.type = "failure";
+				resultMsg.message = args[1] + " does not exist in inventory or " + args[3] + " is not in current location.";
+			}
+		}
+		else {//if ON is incorrect
+			resultMsg.type = "failure";
+			resultMsg.message = "Incorrect USE syntax, needs ON";
+		}
+	}
+	else {//if USE is not 4 args
+		resultMsg.type = "failure";
+		resultMsg.message = "Incorrect USE syntax, try again.";
+	}
+	adventure.msgBoard.addMessage(resultMsg);
+	return pair<bool, string>(false, "OPEN uses message system now");
+}
+
+string UseCommand::syntax(string cmdName) {
+	return cmdName + "_[id1]_ON_[id2] || Uses entity id1 on id2 (id1 can either have attack or heal component e.g sword or potion)";
 }
 

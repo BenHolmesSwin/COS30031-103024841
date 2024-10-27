@@ -62,3 +62,8 @@ class OpenCommand : public Command {
 	string syntax(string cmdName) override;
 	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
 };
+
+class UseCommand : public Command {
+	string syntax(string cmdName) override;
+	pair<bool, string> execute(vector<string> args, Adventure& adventure) override;
+};

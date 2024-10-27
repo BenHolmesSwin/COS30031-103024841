@@ -1,11 +1,12 @@
 #include <iostream>
 
 
-#include "MessageBoard.h"
-#include "Command.h"
+#include "Entity.h"
 #include "Adventure.h"
 #include "Component.h"
 #include "Message.h"
+#include "MessageBoard.h"
+#include "Command.h"
 
 using namespace std;
 
@@ -104,6 +105,9 @@ pair<bool, string> LookCommand::execute(vector<string> args, Adventure& adventur
 			if (adventure.graph[adventure.current].contents.count(args[2])) {//if graph contents contains entity with key ars[2]
 				const auto& ent = adventure.graph[adventure.current].contents[args[2]];
 				cout << "Looking at: " << ent.name << " | " << ent.description << endl;
+				if (ent.components.count("health")) {
+					cout << "Current Hp: " << ent.health << endl;
+				}
 				badInput = false;
 				resultString = "LOOK AT done";
 			}

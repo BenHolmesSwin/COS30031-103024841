@@ -1,11 +1,9 @@
 
 #include <iostream>
 
-
 #include "Message.h"
-#include "Adventure.h"
-#include "Player.h"
 #include "MessageBoard.h"
+#include "Adventure.h"
 
 using namespace std;
 
@@ -17,8 +15,6 @@ void MessageBoard::doMessages(Adventure& adventure) {
 	for (Message message : messages) {
 		if (message.type == "sucess" || message.type == "failure") {//check this first as some sucess/failure messages can have message.to's
 			cout << message.message << endl;
-		}else if (message.to == "player") {//checking if it is to player, this is for Put
-			adventure.player.recieveMessage(message, *this);
 		}else if (adventure.graph[adventure.current].contents.count(message.to)) {//checking if in location
 			adventure.graph[adventure.current].contents[message.to].recieveMessage(message, *this);
 		}

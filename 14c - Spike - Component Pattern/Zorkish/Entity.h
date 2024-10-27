@@ -21,6 +21,7 @@ namespace entity {
 		bool carry = true;
 		bool open = true;
 		bool locked = false;
+		int health = 0;
 		vector<string> componentsList;
 		map<string, Entity> inventory;
 		map<string, Component*> components;

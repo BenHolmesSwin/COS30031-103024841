@@ -16,6 +16,9 @@ namespace entity {
 		j.at("desc").get_to(l.description);
 		j.at("carry").get_to(l.carry);
 		j.at("components").get_to(l.componentsList);
+		if (j.contains("health")) {
+			j.at("health").get_to(l.health);
+		}
 	}
 
 	void Entity::componentAdd(string id, Component* component) {

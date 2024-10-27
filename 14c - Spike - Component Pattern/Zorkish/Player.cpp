@@ -20,7 +20,4 @@ namespace player {
 		j.at("health").get_to(p.health);
 		p.inventory = createContents(j);
 	}
-	void Player::recieveMessage(Message message, MessageBoard& msgBoard) {
-
-	}
 }

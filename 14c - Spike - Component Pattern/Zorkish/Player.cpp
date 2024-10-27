@@ -1,4 +1,6 @@
 
+#include "MessageBoard.h"
+#include "Message.h"
 #include "Player.h"
 
 
@@ -17,5 +19,8 @@ namespace player {
 	void from_json(const json& j, Player& p) {
 		j.at("health").get_to(p.health);
 		p.inventory = createContents(j);
+	}
+	void Player::recieveMessage(Message message, MessageBoard& msgBoard) {
+
 	}
 }

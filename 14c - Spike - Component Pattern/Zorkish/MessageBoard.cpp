@@ -1,9 +1,11 @@
 
 #include <iostream>
 
-#include "MessageBoard.h"
+
 #include "Message.h"
 #include "Adventure.h"
+#include "Player.h"
+#include "MessageBoard.h"
 
 using namespace std;
 

@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+class MessageBoard;
+
 namespace player {
 	class Player {
 	public:
@@ -9,6 +11,7 @@ namespace player {
 		int health;
 		void addItem(string id, entity::Entity item);
 		void removeItem(string id);
+		void recieveMessage(Message message, MessageBoard& msgBoard);
 	};
 
 	void from_json(const json& j, Player& l);

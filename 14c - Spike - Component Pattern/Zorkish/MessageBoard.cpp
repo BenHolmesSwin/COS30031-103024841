@@ -1,4 +1,6 @@
 
+#include <iostream>
+
 #include "MessageBoard.h"
 #include "Message.h"
 #include "Adventure.h"
@@ -11,12 +13,17 @@ void MessageBoard::addMessage(Message message) {
 
 void MessageBoard::doMessages(Adventure& adventure) {
 	for (Message message : messages) {
-		if (adventure.graph[adventure.current].contents.count(message.to)) {
-			adventure.graph[adventure.current].contents[message.to].recieveMessage(message);
+		if (message.type == "sucess" || message.type == "failure") {//check this first as some sucess/failure messages can have message.to's
+			cout << message.message << endl;
+		}else if (message.to == "player") {//checking if it is to player, this is for Put
+			adventure.player.recieveMessage(message, *this);
+		}else if (adventure.graph[adventure.current].contents.count(message.to)) {//checking if in location
+			adventure.graph[adventure.current].contents[message.to].recieveMessage(message, *this);
 		}
-		else if (adventure.player.inventory.count(message.to)) {
-			adventure.player.inventory[message.to].recieveMessage(message);
+		else if (adventure.player.inventory.count(message.to)) {//checking if in inventory
+			adventure.player.inventory[message.to].recieveMessage(message, *this);
 		}
+		messages.erase(remove(begin(messages),end(messages),message));//this erases the message from the vector, need to test if works properly
 	}
 }
 

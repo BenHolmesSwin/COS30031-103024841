@@ -1,8 +1,11 @@
 #include <iostream>
 
+
+#include "MessageBoard.h"
 #include "Command.h"
 #include "Adventure.h"
 #include "Component.h"
+#include "Message.h"
 
 using namespace std;
 
@@ -328,66 +331,81 @@ string PutCommand::syntax(string cmdName) {
 }
 
 //OPEN command
-string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure) {
-	string result;
-	if (ent.components.count("open")) {
-		if (ent.components["open"]->check(ent)) {
-			cout << ent.name << " is already open" << endl;
-			result = "OPEN already open";
+//string openEntity(vector<string> args,entity::Entity& ent, Adventure& adventure) {
+//	string result;
+//	if (ent.components.count("open")) {
+//		if (ent.components["open"]->check(ent)) {
+//			cout << ent.name << " is already open" << endl;
+//			result = "OPEN already open";
+//		}
+//		else {
+//			bool openCheck = ent.components["open"]->execute(ent); //excute for openComponet returns true when given entity not locked (Also isnt opened if false)
+//			if (!openCheck) { //check if it returned false
+//				if (args.size() == 4) {// checking correct command length for OPEN entity WITH key
+//					if (adventure.player.inventory.count(args[3])) {//needs two sperate ifs cause of potential out of index errors, checking have args 3 item in inventory
+//						bool keyCheck = ent.components["open"]->execute(ent, args[3]); // returns false if args[3] is not "key"
+//						if (keyCheck) {// check true (if true opened with key)
+//							cout << ent.name << " opened with key!" << endl;
+//							result = "OPEN opened with key";
+//						}
+//						else {
+//							cout << ent.name << " is locked, that was not a key!" << endl;
+//							result = "OPEN opened with key";
+//						}
+//					}
+//					else {
+//						cout << ent.name << " is locked, " << args[3] << " is not in your inventory! (use TAKE if key is in something else)" << endl;
+//						result = "OPEN locked no key";
+//					}
+//				}
+//				else { // check is incorrect command
+//					cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
+//					result = "OPEN locked no key";
+//				}
+//			}
+//			else { // if check is true, it opened.
+//				cout << ent.name << " opened!" << endl;
+//				result = "OPEN opened";
+//			}
+//		}
+//	}
+//	else {
+//		cout << ent.name << " has no ability to be opened or closed" << endl;
+//		result = "OPEN no need";
+//	}
+//	return result;
+//}
+
+pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventure) {
+	Message resultMsg;
+	if (args.size() > 1) {//check to prevent out of index errors
+		if (adventure.graph[adventure.current].contents.count(args[1]) || adventure.player.inventory.count(args[1])) {
+			resultMsg.type = "open";
+			resultMsg.from = "CommandOpen";
+			resultMsg.to = args[1];
+			resultMsg.message = "Opening " + args[1];
+			if (args.size() == 4) {// checking correct command length for OPEN entity WITH key
+				if (adventure.player.inventory.count(args[3]) && args[2] == "WITH") {
+					resultMsg.additional = args[3];
+					resultMsg.message += " With " + args[3];
+				}
+				else {
+					resultMsg.type = "failure";
+					resultMsg.message = "OPEN WITH failed, either no " + args[3] + " in inventory or WITH syntax error!";
+				}
+			}
 		}
 		else {
-			bool openCheck = ent.components["open"]->execute(ent); //excute for openComponet returns true when given entity not locked (Also isnt opened if false)
-			if (!openCheck) { //check if it returned false
-				if (args.size() == 4) {// checking correct command length for OPEN entity WITH key
-					if (adventure.player.inventory.count(args[3])) {//needs two sperate ifs cause of potential out of index errors, checking have args 3 item in inventory
-						bool keyCheck = ent.components["open"]->execute(ent, args[3]); // returns false if args[3] is not "key"
-						if (keyCheck) {// check true (if true opened with key)
-							cout << ent.name << " opened with key!" << endl;
-							result = "OPEN opened with key";
-						}
-						else {
-							cout << ent.name << " is locked, that was not a key!" << endl;
-							result = "OPEN opened with key";
-						}
-					}
-					else {
-						cout << ent.name << " is locked, " << args[3] << " is not in your inventory! (use TAKE if key is in something else)" << endl;
-						result = "OPEN locked no key";
-					}
-				}
-				else { // check is incorrect command
-					cout << ent.name << " is locked, you need to use a key to Open it (needs to be in your inventory and use WITH)" << endl;
-					result = "OPEN locked no key";
-				}
-			}
-			else { // if check is true, it opened.
-				cout << ent.name << " opened!" << endl;
-				result = "OPEN opened";
-			}
+			resultMsg.type = "failure";
+			resultMsg.message = args[1] + " does not exsist in inventory or current location, check spelling";
 		}
 	}
 	else {
-		cout << ent.name << " has no ability to be opened or closed" << endl;
-		result = "OPEN no need";
+		resultMsg.type = "failure";
+		resultMsg.message = "Incorrect syntax, try again.";
 	}
-	return result;
-}
-
-pair<bool, string> OpenCommand::execute(vector<string> args, Adventure& adventure) {
-	string resultString = "This entity does not exist in this location or your inventory, use look to find out whats around you";
-	bool badInput = true;
-	if (args.size() > 1) {//check to prevent out of index errors
-		if (adventure.graph[adventure.current].contents.count(args[1]) || adventure.player.inventory.count(args[1])) {
-			if (adventure.graph[adventure.current].contents.count(args[1])) {
-				resultString = openEntity(args, adventure.graph[adventure.current].contents[args[1]], adventure);
-			}
-			else {
-				resultString = openEntity(args, adventure.player.inventory[args[1]], adventure);
-			}
-			badInput = false;
-		}
-	}
-	return pair<bool, string>(badInput, resultString);
+	adventure.msgBoard.addMessage(resultMsg);
+	return pair<bool, string>(false, "OPEN uses message system now");
 }
 
 string OpenCommand::syntax(string cmdName) {

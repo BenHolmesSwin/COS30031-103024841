@@ -10,6 +10,7 @@ using json = nlohmann::json;
 
 class Component;
 struct Message;
+class MessageBoard;
 
 namespace entity {
 	struct Entity
@@ -24,7 +25,7 @@ namespace entity {
 		map<string, Entity> inventory;
 		map<string, Component*> components;
 		void componentAdd(string id, Component* component);
-		void recieveMessage(Message message);//TODO: Message
+		void recieveMessage(Message message, MessageBoard& msgBoard);
 	};
 }
 namespace bag {

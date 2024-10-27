@@ -1,12 +1,13 @@
 #include <fstream>
 #include <iostream>
 
-#include "json.hpp"
-#include "Location.h"
-#include "Adventure.h"
+
 #include "Command.h"
 #include "ComponentManager.h"
 #include "MessageBoard.h"
+#include "json.hpp"
+#include "Location.h"
+#include "Adventure.h"
 
 using namespace std;
 using json = nlohmann::json;

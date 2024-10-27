@@ -1,8 +1,10 @@
 
-#include "json.hpp"
-#include "Entity.h"
+
 #include "Message.h"
 #include "Component.h"
+#include "MessageBoard.h"
+#include "json.hpp"
+#include "Entity.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -20,10 +22,16 @@ namespace entity {
 		components[id] = component;
 	}
 
-	void Entity::recieveMessage(Message message) {
+	void Entity::recieveMessage(Message message, MessageBoard& msgBoard) {
+		Message msgResult;
 		if (components.count(message.type)) {
-			components[message.type]->execute();
+			msgResult = components[message.type]->execute(*this,message);
 		}
+		else {
+			msgResult.type = "failure";
+			msgResult.message = name + " does not have ability to use " + message.type;
+		}
+		msgBoard.addMessage(msgResult);
 	}
 }
 

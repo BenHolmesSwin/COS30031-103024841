@@ -4,7 +4,6 @@
 
 #include "Command.h"
 #include "ComponentManager.h"
-#include "MessageBoard.h"
 #include "json.hpp"
 #include "Location.h"
 #include "Adventure.h"
@@ -32,7 +31,7 @@ Adventure::Adventure(const char* fileName)
 	start(jsonData);
 }
 
-void Adventure::start(json data){
+void Adventure::start(json data) {
 	data.at("player").get_to(player);
 	for (const auto& l : data["locations"]) {
 		string id = l["id"];
@@ -73,14 +72,14 @@ void Adventure::gameInput() {
 
 	cout << "You are currently at: " << graph[current].name << endl;
 
-	pair<bool,string> badInput = pair<bool,string>(true,"inital");
+	pair<bool, string> badInput = pair<bool, string>(true, "inital");
 	string input;
 	while (badInput.first) {
 		cout << ":> ";
 		getline(cin, input);
 		string delimiter = " ";
 		auto tokens = split(input, delimiter);
-		badInput = cmdManager.executeCommand(tokens[0],tokens,*this);
+		badInput = cmdManager.executeCommand(tokens[0], tokens, *this);
 		if (badInput.first) {
 			cout << badInput.second << " Try Again!" << endl;
 		}
@@ -89,5 +88,3 @@ void Adventure::gameInput() {
 		msgBoard.doMessages(*this);
 	}
 }
-
-

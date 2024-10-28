@@ -2,9 +2,9 @@
 
 #include "Message.h"
 #include "Component.h"
-#include "MessageBoard.h"
 #include "json.hpp"
 #include "Entity.h"
+#include "MessageBoard.h"
 
 using namespace std;
 using json = nlohmann::json;

@@ -5,7 +5,6 @@
 #include "Adventure.h"
 #include "Component.h"
 #include "Message.h"
-#include "MessageBoard.h"
 #include "Command.h"
 
 using namespace std;

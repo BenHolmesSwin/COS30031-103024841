@@ -1,0 +1,135 @@
+{
+  "player": {
+    "health": 100,
+    "inventory": [
+      {
+        "id": "key",
+        "name": "Key",
+        "desc": "A key",
+        "carry": true,
+        "components": [
+        ]
+      },
+      {
+        "id": "sword",
+        "name": "Sword",
+        "desc": "A nice iron sword",
+        "carry": true,
+        "components": [
+          "use",
+          "attack"
+        ]
+      },
+      {
+        "id": "potion",
+        "name": "Potion",
+        "desc": "A small healing potion",
+        "carry": true,
+        "components": [
+          "use",
+          "heal"
+        ]
+      },
+        {
+          "id": "bag",
+          "name": "Bag",
+          "desc": "A small bag",
+          "locked": false,
+          "open": true,
+          "inventory": [
+            {
+              "id": "trinket",
+              "name": "Trinket",
+              "desc": "A small trinket, sentimental",
+              "carry": true,
+              "components": [
+              ]
+            }
+          ],
+          "components": [
+            "open"
+          ]
+        },
+        {
+          "id": "pouch",
+          "name": "Pouch",
+          "desc": "A small bag",
+          "locked": true,
+          "open": false,
+          "inventory": [
+            {
+              "id": "coins",
+              "name": "Coins",
+              "desc": "A small number of coins",
+              "carry": true,
+              "components": [
+              ]
+            }
+          ],
+          "components": [
+            "open"
+          ]
+        }
+    ]
+  },
+  "locations": [
+    {
+      "id": "castle",
+      "name": "Castle",
+      "desc": "A big stone Castle",
+      "connections": [
+      ],
+      "inventory": [
+        {
+          "id": "goblin",
+          "name": "Goblin",
+          "desc": "A mean little goblin",
+          "carry": false,
+          "health": 10,
+          "components": [
+            "health"
+          ]
+        },
+        {
+          "id": "dog",
+          "name": "Dog",
+          "desc": "A old dog",
+          "carry": false,
+          "health": 1,
+          "components": [
+            "health"
+          ]
+        },
+
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple",
+          "carry": true,
+          "components": [
+          ]
+        },
+        {
+          "id": "chest",
+          "name": "Chest",
+          "desc": "A fancy chest containing items",
+          "open": false,
+          "locked": true,
+          "inventory": [
+            {
+              "id": "silver",
+              "name": "Silver Bar",
+              "desc": "A silver bar",
+              "carry": true,
+              "components": [
+              ]
+            }
+          ],
+          "components": [
+            "open"
+          ]
+        }
+      ]
+    }
+  ]
+}

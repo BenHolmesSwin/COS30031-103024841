@@ -1,0 +1,361 @@
+{
+  "player": {
+    "health": 100,
+    "inventory": [
+      {
+        "id": "key",
+        "name": "Key",
+        "desc": "A key",
+        "carry": true
+      },
+      {
+        "id": "sword",
+        "name": "Sword",
+        "desc": "A nice iron sword",
+        "carry": true
+      },
+      {
+        "id": "bag",
+        "name": "Bag",
+        "desc": "A small bag",
+        "inventory": [
+          {
+            "id": "trinket",
+            "name": "Trinket",
+            "desc": "A small trinket, sentimental",
+            "carry": true
+          }
+        ]
+      },
+      {
+        "id": "pouch",
+        "name": "Pouch",
+        "desc": "A small bag",
+        "locked": true,
+        "open": false,
+        "inventory": [
+          {
+            "id": "coins",
+            "name": "Coins",
+            "desc": "A small number of coins",
+            "carry": true
+          }
+        ]
+      }
+    ]
+  },
+  "locations": [
+    {
+      "id": "castle",
+      "name": "Castle",
+      "desc": "A big stone Castle",
+      "connections": [
+        "sewers",
+        "capital"
+      ],
+      "inventory": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple",
+          "carry": true
+        },
+        {
+          "id": "chest",
+          "name": "Chest",
+          "desc": "A fancy chest containing items",
+          "open": false,
+          "locked": true,
+          "inventory": [
+            {
+              "id": "silver",
+              "name": "Silver Bar",
+              "desc": "A silver bar",
+              "carry": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sewers",
+      "name": "Sewers",
+      "desc": "Sewers underneath the capital",
+      "connections": [
+        "ancient",
+        "castle",
+        "fields"
+      ],
+      "inventory": [
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items",
+          "open": false,
+          "inventory": [
+            {
+              "id": "dead rat",
+              "name": "Dead Rat",
+              "desc": "A dead rat",
+              "carry": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ancient",
+      "name": "Ancient City",
+      "desc": "An ancient city buried underneath the capital sewers",
+      "connections": [
+        "sewers"
+      ],
+      "inventory": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton",
+          "desc": "A moving skeleton",
+          "carry": false
+        },
+        {
+          "id": "chest",
+          "name": "Chest",
+          "desc": "A fancy chest containing items",
+          "open": false,
+          "locked": true,
+          "inventory": [
+            {
+              "id": "gold",
+              "name": "Gold Bar",
+              "desc": "A gold bar",
+              "carry": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capital",
+      "name": "Capital",
+      "desc": "the castle town, centre of the country",
+      "connections": [
+        "castle",
+        "fields",
+        "forest"
+      ],
+      "inventory": [
+        {
+          "id": "dog",
+          "name": "Dog",
+          "desc": "A hurt dog",
+          "carry": false
+        }
+      ]
+    },
+    {
+      "id": "fields",
+      "name": "Fields",
+      "desc": "The fields around the capital",
+      "connections": [
+        "capital",
+        "forest",
+        "pass"
+      ],
+      "inventory": [
+        {
+          "id": "wheat",
+          "name": "Wheat",
+          "desc": "Some wheat",
+          "carry": true
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "name": "Mountain Pass",
+      "desc": "The mountain pass to the south of the nation",
+      "connections": [
+        "fields",
+        "fort"
+      ],
+      "inventory": [
+      ]
+    },
+    {
+      "id": "fort",
+      "name": "Fort",
+      "desc": "An old fort in the mountain pass",
+      "connections": [
+        "pass",
+        "town",
+        "woods"
+      ],
+      "inventory": [
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items",
+          "open": false,
+          "inventory": [
+            {
+              "id": "ration",
+              "name": "Rations",
+              "desc": "Some soldiers rations",
+              "carry": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "town",
+      "name": "Town",
+      "desc": "The border town",
+      "connections": [
+        "fort",
+        "woods"
+      ],
+      "inventory": [
+        {
+          "id": "leather armor",
+          "name": "Leather",
+          "desc": "Some leathor armor",
+          "carry": true
+        }
+      ]
+    },
+    {
+      "id": "woods",
+      "name": "Woods",
+      "desc": "A woody area south of the pass on the border",
+      "connections": [
+        "fort",
+        "town"
+      ],
+      "inventory": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple",
+          "carry": true
+        },
+        {
+          "id": "sticks",
+          "name": "Sticks",
+          "desc": "A bunch of small sticks",
+          "carry": true
+        }
+      ]
+    },
+    {
+      "id": "forest",
+      "name": "Forest",
+      "desc": "The forest north of the capital",
+      "connections": [
+        "capital",
+        "fields",
+        "tower",
+        "river",
+        "village"
+      ],
+      "inventory": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple",
+          "carry": true
+        },
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items",
+          "open": false,
+          "inventory": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tower",
+      "name": "Tower",
+      "desc": "A spooky tower in the depths of the forest",
+      "connections": [
+        "forest"
+      ],
+      "inventory": [
+        {
+          "id": "apple",
+          "name": "Apple",
+          "desc": "A fresh apple",
+          "carry": true
+        },
+        {
+          "id": "wizard",
+          "name": "Wizard",
+          "desc": "An old wizard",
+          "carry": false
+        }
+      ]
+    },
+    {
+      "id": "river",
+      "name": "River",
+      "desc": "A small river running through the forest",
+      "connections": [
+        "forest",
+        "village"
+      ],
+      "inventory": [
+        {
+          "id": "water",
+          "name": "Water",
+          "desc": "Fresh water",
+          "carry": true
+        }
+      ]
+    },
+    {
+      "id": "village",
+      "name": "Village",
+      "desc": "The foresters village",
+      "connections": [
+        "forest",
+        "river",
+        "caves"
+      ],
+      "inventory": [
+        {
+          "id": "barrel",
+          "name": "Barrel",
+          "desc": "A Barrel containing items",
+          "open": false,
+          "inventory": [
+            {
+              "id": "firewood",
+              "name": "Firewood",
+              "desc": "a bundle of Firewood",
+              "carry": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caves",
+      "name": "Caves",
+      "desc": "Extensive cave system full of monsters",
+      "connections": [
+        "village"
+      ],
+      "inventory": [
+        {
+          "id": "goblin",
+          "name": "Goblin",
+          "desc": "A mangy Goblin",
+          "carry": false
+        }
+      ]
+    }
+  ]
+}

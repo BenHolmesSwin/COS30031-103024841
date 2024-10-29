@@ -23,60 +23,64 @@ SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
 
 
-const int SCREEN_WIDTH = 600;
-const int SCREEN_HEIGHT = 800;
+const int SCREEN_WIDTH = 275;
+const int SCREEN_HEIGHT = 246;
 
 void SDLsound() {
-    //Update the surface
-    SDL_UpdateWindowSurface(gWindow);
-    bool isInit = init();//initalise sdl
-    bool isLoad = loadMedia();//load media
-    //Hack to get window to stay up
-    SDL_Event e;
-    bool quit = false;
-    if (isInit && isLoad) {
-        while (quit == false) {
-            while (SDL_PollEvent(&e) != 0) {
-                if (e.type == SDL_QUIT) {
-                    quit = true;
-                }
-                else if (e.type == SDL_KEYDOWN) {
-                    switch (e.key.keysym.sym)
-                    {
-                    case SDLK_1://play first sound
-                        Mix_PlayChannel(-1, gSound1, 0);
-                        break;
-                    case SDLK_2://play second sound
-                        Mix_PlayChannel(-1, gSound2, 0);
-                        break;
-                    case SDLK_3://play third sound
-                        Mix_PlayChannel(-1, gSound3, 0);
-                        break;
-                        //music
-                    case SDLK_0:
-                        //If music isnt playing
-                        if (Mix_PlayingMusic() == 0)
+    if (!init()) {
+        printf("Failed to initialize!\n");
+    }
+    else {
+        if (!loadMedia()) {
+            printf("Failed to load media!\n");
+        }else{
+            SDL_Event e;
+            bool quit = false;
+            SDL_BlitSurface(gImage, NULL, gScreenSurface, NULL);
+            SDL_UpdateWindowSurface(gWindow);
+            while (quit == false) {
+                while (SDL_PollEvent(&e) != 0) {
+                    if (e.type == SDL_QUIT) {
+                        quit = true;
+                    }
+                    else if (e.type == SDL_KEYDOWN) {
+                        switch (e.key.keysym.sym)
                         {
-                            //Play the music
-                            Mix_PlayMusic(gMusic, -1);
-                        }
-                        //If music playing
-                        else
-                        {
-                            //If music is paused
-                            if (Mix_PausedMusic() == 1)
+                        case SDLK_1://play first sound
+                            Mix_PlayChannel(-1, gSound1, 0);
+                            break;
+                        case SDLK_2://play second sound
+                            Mix_PlayChannel(-1, gSound2, 0);
+                            break;
+                        case SDLK_3://play third sound
+                            Mix_PlayChannel(-1, gSound3, 0);
+                            break;
+                            //music
+                        case SDLK_0:
+                            //If music isnt playing
+                            if (Mix_PlayingMusic() == 0)
                             {
-                                //Resume the music
-                                Mix_ResumeMusic();
+                                //Play the music
+                                Mix_PlayMusic(gMusic, -1);
                             }
-                            //If music is playing
+                            //If music playing
                             else
                             {
-                                //Pause the music
-                                Mix_PauseMusic();
+                                //If music is paused
+                                if (Mix_PausedMusic() == 1)
+                                {
+                                    //Resume the music
+                                    Mix_ResumeMusic();
+                                }
+                                //If music is playing
+                                else
+                                {
+                                    //Pause the music
+                                    Mix_PauseMusic();
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
@@ -131,7 +135,7 @@ bool loadMedia()
         success = false;
     }
     //Load music
-    gMusic = Mix_LoadMUS("sounds/GuitarLoop.wav");
+    gMusic = Mix_LoadMUS("resources/GuitarLoop.wav");
     if (gMusic == NULL)
     {
         printf("Failed to load guitar music! SDL_mixer Error: %s\n", Mix_GetError());
@@ -139,21 +143,21 @@ bool loadMedia()
     }
 
     //Load sound effects
-    gSound1 = Mix_LoadWAV("sounds/PianoChord.wav");
+    gSound1 = Mix_LoadWAV("resources/PianoChord.wav");
     if (gSound1 == NULL)
     {
         printf("Failed to load first sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
 
-    gSound2 = Mix_LoadWAV("sounds/SharpieSound.wav");
+    gSound2 = Mix_LoadWAV("resources/SharpieSound.wav");
     if (gSound2 == NULL)
     {
         printf("Failed to load second sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
 
-    gSound3 = Mix_LoadWAV("sounds/Whoosh.wav");
+    gSound3 = Mix_LoadWAV("resources/Whoosh.wav");
     if (gSound3 == NULL)
     {
         printf("Failed to load third sound effect! SDL_mixer Error: %s\n", Mix_GetError());

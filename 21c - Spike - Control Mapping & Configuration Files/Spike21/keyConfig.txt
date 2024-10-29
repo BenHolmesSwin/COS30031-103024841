@@ -1,2 +1,1 @@
 r: change background
-m: change bindings

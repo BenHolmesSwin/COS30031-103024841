@@ -11,7 +11,6 @@ const int SCREEN_WIDTH = 600;
 const int SCREEN_HEIGHT = 800;
 
 SDL_Keycode changeBackground;
-SDL_Keycode changeBindings;
 
 std::vector<std::string> split(std::string& s, const std::string& delimiter) {// split tokens
 	std::vector<std::string> tokens;
@@ -41,20 +40,14 @@ void loadKey(char* fileName) {
 			changeBackground = int(buffer[0]);
 			std::cout << "Change Background is currently: " << buffer[0] << std::endl;
 		}
-		else if (tokens[1] == "change bindings") {
-			changeBindings = int(buffer[0]);
-			std::cout << "Change Bindings is currently: " << buffer[0] << std::endl;
-		}
 	}
 	std::cout << "Reset Bindings is currently: p" << std::endl;
 }
 
-void changeKeys() {//this just hardcodes it to space and t, could make it randomise with a bit of difficulty
-	changeBackground = SDLK_SPACE;
-	std::cout << "Change Background is currently: SpaceBar" << std::endl;
-	changeBindings = SDLK_t;
-	std::cout << "Change Bindings is currently: t" << std::endl;
-	std::cout << "Reset Bindings is currently: p" << std::endl;
+void changeKeys(SDL_Keycode key) {//this just hardcodes it to space and t, could make it randomise with a bit of difficulty
+	changeBackground = key;
+	std::cout << "Change Background is currently: " << (char)key << std::endl;
+	std::cout << "Reset Binding is currently: p" << std::endl;
 }
 
 void changeBackgroundColor(SDL_Window* window, SDL_Surface* surface) {
@@ -110,11 +103,11 @@ int main( int argc, char* args[] )
 						if (e.key.keysym.sym == changeBackground) {
 							changeBackgroundColor(window, screenSurface);
 						}
-						else if (e.key.keysym.sym == changeBindings) {
-							changeKeys();
-						}
 						else if (e.key.keysym.sym == SDLK_p) {
 							loadKey(args[1]);
+						}
+						else {
+							changeKeys(e.key.keysym.sym);
 						}
 					}
 				}

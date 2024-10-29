@@ -4,6 +4,7 @@
 #include <random>
 #include <fstream>
 #include <string>
+#include <iostream>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 600;
@@ -37,16 +38,22 @@ void loadKey(char* fileName) {
 		strcpy_s(buffer, tokens[0].data());
 		if (tokens[1] == "change background") {
 			changeBackground = int(buffer[0]);
+			std::cout << "Change Background is currently: " << buffer[0] << std::endl;
 		}
-		else if (tokens[1] == "change") {
+		else if (tokens[1] == "change bindings") {
 			change = int(buffer[0]);
+			std::cout << "Change Bindings is currently: " << buffer[0] << std::endl;
 		}
 	}
+	std::cout << "Reset Bindings is currently: p" << std::endl;
 }
 
 void changeKeys() {
 	changeBackground = SDLK_SPACE;
+	std::cout << "Change Background is currently: SpaceBar" << std::endl;
 	change = SDLK_t;
+	std::cout << "Change Bindings is currently: t" << std::endl;
+	std::cout << "Reset Bindings is currently: p" << std::endl;
 }
 
 void changeBackgroundColor(SDL_Window* window, SDL_Surface* surface) {

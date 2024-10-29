@@ -11,7 +11,7 @@ const int SCREEN_WIDTH = 600;
 const int SCREEN_HEIGHT = 800;
 
 SDL_Keycode changeBackground;
-SDL_Keycode change;
+SDL_Keycode changeBindings;
 
 std::vector<std::string> split(std::string& s, const std::string& delimiter) {// split tokens
 	std::vector<std::string> tokens;
@@ -27,11 +27,12 @@ std::vector<std::string> split(std::string& s, const std::string& delimiter) {//
 	return tokens;
 }
 
+//the file is read line by line with format "key: function" (only change background and bindings done)
 void loadKey(char* fileName) {
 	std::ifstream file;
 	file.open(fileName);
 	std::string line;
-	while (!file.eof()) {
+	while (!file.eof()) {//this assumes that the key is a lowercase letter so that it can use the ASCII value to map to the correct SDL_keycode
 		std::getline(file,line);
 		auto tokens  = split(line, ": ");
 		char buffer[100];
@@ -41,17 +42,17 @@ void loadKey(char* fileName) {
 			std::cout << "Change Background is currently: " << buffer[0] << std::endl;
 		}
 		else if (tokens[1] == "change bindings") {
-			change = int(buffer[0]);
+			changeBindings = int(buffer[0]);
 			std::cout << "Change Bindings is currently: " << buffer[0] << std::endl;
 		}
 	}
 	std::cout << "Reset Bindings is currently: p" << std::endl;
 }
 
-void changeKeys() {
+void changeKeys() {//this just hardcodes it to space and t, could make it randomise with a bit of difficulty
 	changeBackground = SDLK_SPACE;
 	std::cout << "Change Background is currently: SpaceBar" << std::endl;
-	change = SDLK_t;
+	changeBindings = SDLK_t;
 	std::cout << "Change Bindings is currently: t" << std::endl;
 	std::cout << "Reset Bindings is currently: p" << std::endl;
 }
@@ -68,6 +69,9 @@ int main( int argc, char* args[] )
 	
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
+
+	//initalise random seed
+	srand(time(NULL));
 
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -106,7 +110,7 @@ int main( int argc, char* args[] )
 						if (e.key.keysym.sym == changeBackground) {
 							changeBackgroundColor(window, screenSurface);
 						}
-						else if (e.key.keysym.sym == change) {
+						else if (e.key.keysym.sym == changeBindings) {
 							changeKeys();
 						}
 						else if (e.key.keysym.sym == SDLK_p) {

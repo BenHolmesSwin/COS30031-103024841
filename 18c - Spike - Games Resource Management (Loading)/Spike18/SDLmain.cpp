@@ -1,6 +1,6 @@
 
 #include "SDLgraphical.h"
-//#include "SDLsound.h"
+#include "SDLsound.h"
 
 
 int main(int argc, char* args[]) {

@@ -55,8 +55,7 @@ void SDLsound() {
                         case SDLK_3://play third sound
                             Mix_PlayChannel(-1, gSound3, 0);
                             break;
-                            //music
-                        case SDLK_0:
+                        case SDLK_0://music
                             //If music isnt playing
                             if (Mix_PlayingMusic() == 0)
                             {
@@ -129,13 +128,13 @@ bool loadMedia()
     //Loading success flag
     bool success = true;
 
-    gImage = SDL_LoadBMP("resources/Background.bmp");
+    gImage = SDL_LoadBMP("resourcesSound/Background.bmp");
     if (gImage == NULL) {
         printf("Failed to load Background!\n");
         success = false;
     }
     //Load music
-    gMusic = Mix_LoadMUS("resources/GuitarLoop.wav");
+    gMusic = Mix_LoadMUS("resourcesSound/GuitarLoop.wav");
     if (gMusic == NULL)
     {
         printf("Failed to load guitar music! SDL_mixer Error: %s\n", Mix_GetError());
@@ -143,21 +142,21 @@ bool loadMedia()
     }
 
     //Load sound effects
-    gSound1 = Mix_LoadWAV("resources/PianoChord.wav");
+    gSound1 = Mix_LoadWAV("resourcesSound/PianoChord.wav");
     if (gSound1 == NULL)
     {
         printf("Failed to load first sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
 
-    gSound2 = Mix_LoadWAV("resources/SharpieSound.wav");
+    gSound2 = Mix_LoadWAV("resourcesSound/SharpieSound.wav");
     if (gSound2 == NULL)
     {
         printf("Failed to load second sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
 
-    gSound3 = Mix_LoadWAV("resources/Whoosh.wav");
+    gSound3 = Mix_LoadWAV("resourcesSound/Whoosh.wav");
     if (gSound3 == NULL)
     {
         printf("Failed to load third sound effect! SDL_mixer Error: %s\n", Mix_GetError());
@@ -168,6 +167,9 @@ bool loadMedia()
 }
 
 void close() {
+    //free background
+    gImage = NULL;
+
     //Free the sound effects
     Mix_FreeChunk(gSound1);
     Mix_FreeChunk(gSound2);

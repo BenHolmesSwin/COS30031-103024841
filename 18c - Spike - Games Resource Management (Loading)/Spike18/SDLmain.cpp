@@ -4,7 +4,8 @@
 
 
 int main(int argc, char* args[]) {
-	SDLsound();
-	//SDLgraphical();
+	//uncomment and comment them when want to test
+	//SDLsound();
+	SDLgraphical();
 	return 0;
 }

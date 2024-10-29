@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <random>
+#include <string>
 
 #include "SDLgraphical.h"
 
@@ -11,7 +12,6 @@ const int SCREEN_HEIGHT = 800;
 
 //window and background image
 bool backgroundRend = true;
-SDL_Surface* gBackground = NULL;
 SDL_Texture* gBackgroundTexture;
 SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
@@ -63,15 +63,31 @@ void SDLgraphical()
                         {
                         case SDLK_1://tile 1 toggle
                             sprite1Rend = !sprite1Rend;
+                            if (sprite1Rend) {
+                                toggle = "ON";
+                            }
+                            printf("tile 1 display %s at location (%d,%d)\n", toggle.c_str(), sprite1Rendx, sprite1Rendy);
                             break;
                         case SDLK_2://tile 2 toggle
                             sprite2Rend = !sprite2Rend;
+                            if (sprite2Rend) {
+                                toggle = "ON";
+                            }
+                            printf("tile 2 display %s at location (%d,%d)\n", toggle.c_str(), sprite2Rendx, sprite2Rendy);
                             break;
                         case SDLK_3://tile 3 toggle
                             sprite3Rend = !sprite3Rend;
+                            if (sprite3Rend) {
+                                toggle = "ON";
+                            }
+                            printf("tile 3 display %s at location (%d,%d)\n", toggle.c_str(), sprite3Rendx, sprite3Rendy);
                             break;
                         case SDLK_0://background toggle
                             backgroundRend = !backgroundRend;
+                            if (backgroundRend) {
+                                toggle = "ON";
+                            }
+                            printf("Background display %s \n", toggle.c_str());
                             break;
                         }
                         
@@ -131,12 +147,13 @@ bool graphLoadMedia()
     //Loading success flag
     bool success = true;
 
-    gBackground = SDL_LoadBMP("resourcesGraphical/Background.bmp");
+    SDL_Surface* gBackground = SDL_LoadBMP("resourcesGraphical/Background.bmp");
     gBackgroundTexture = SDL_CreateTextureFromSurface(gRenderer, gBackground);
     if (gBackground == NULL) {
         printf("Failed to load Background!\n");
         success = false;
     }
+    //loading
     SDL_Surface* loadedSurface = SDL_LoadBMP("resourcesGraphical/sprites.bmp");
     gSpriteSheetTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
     if (gSpriteSheetTexture == NULL) {
@@ -150,20 +167,20 @@ bool graphLoadMedia()
         // initialize random seed:
         srand(time(NULL));
 
-        //Set leftmost sprite (circle)
-        gSpriteClips[0].x = 0;
-        gSpriteClips[0].y = 0;
-        gSpriteClips[0].w = 70;
-        gSpriteClips[0].h = 75;
+        //Set leftmost sprite (triangle)
+        gSpriteClips[0].x = 2;
+        gSpriteClips[0].y = 13;
+        gSpriteClips[0].w = 51;
+        gSpriteClips[0].h = 46;
         sprite1Rendx = rand() % (SCREEN_WIDTH - gSpriteClips[0].w);
         sprite1Rendy = rand() % (SCREEN_HEIGHT - gSpriteClips[0].h);
 
 
-        //Set middle sprite (triangle)
+        //Set middle sprite (circle)
         gSpriteClips[1].x = 70;
-        gSpriteClips[1].y = 0;
-        gSpriteClips[1].w = 60;
-        gSpriteClips[1].h = 75;
+        gSpriteClips[1].y = 12;
+        gSpriteClips[1].w = 51;
+        gSpriteClips[1].h = 49;
         sprite2Rendx = rand() % (SCREEN_WIDTH - gSpriteClips[1].w);
         sprite2Rendy = rand() % (SCREEN_HEIGHT - gSpriteClips[1].h);
 
@@ -178,13 +195,14 @@ bool graphLoadMedia()
 
     //Get rid of old loaded surface
     SDL_FreeSurface(loadedSurface);
+    SDL_FreeSurface(gBackground);
 
     return success;
 }
 
 void graphClose() {
     //free background
-    gBackground = NULL;
+    SDL_DestroyTexture(gBackgroundTexture);
 
     //free image
     SDL_DestroyTexture(gSpriteSheetTexture);

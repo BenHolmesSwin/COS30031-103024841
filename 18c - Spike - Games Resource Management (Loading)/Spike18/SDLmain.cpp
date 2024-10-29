@@ -5,6 +5,6 @@
 
 int main(int argc, char* args[]) {
 	SDLsound();
-	SDLgraphical();
+	//SDLgraphical();
 	return 0;
 }

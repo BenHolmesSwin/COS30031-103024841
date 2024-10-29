@@ -19,8 +19,8 @@ Mix_Chunk* gSound3 = NULL;
 
 //window and background image
 SDL_Surface* gImage = NULL;
-SDL_Window* gWindow = NULL;
-SDL_Surface* gScreenSurface = NULL;
+SDL_Window* sWindow = NULL;
+SDL_Surface* sScreenSurface = NULL;
 
 
 const int SCREEN_WIDTH = 275;
@@ -36,8 +36,8 @@ void SDLsound() {
         }else{
             SDL_Event e;
             bool quit = false;
-            SDL_BlitSurface(gImage, NULL, gScreenSurface, NULL);
-            SDL_UpdateWindowSurface(gWindow);
+            SDL_BlitSurface(gImage, NULL, sScreenSurface, NULL);
+            SDL_UpdateWindowSurface(sWindow);
             while (quit == false) {
                 while (SDL_PollEvent(&e) != 0) {
                     if (e.type == SDL_QUIT) {
@@ -102,8 +102,8 @@ bool init() {
     else
     {
         //Create window
-        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (gWindow == NULL)
+        sWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+        if (sWindow == NULL)
         {
             printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
             success = false;
@@ -111,7 +111,7 @@ bool init() {
         else
         {
             //Get window surface
-            gScreenSurface = SDL_GetWindowSurface(gWindow);
+            sScreenSurface = SDL_GetWindowSurface(sWindow);
         }
         //Initialize SDL_mixer
         if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
@@ -183,8 +183,8 @@ void close() {
     gMusic = NULL;
 
     //Destroy window    
-    SDL_DestroyWindow(gWindow);
-    gWindow = NULL;
+    SDL_DestroyWindow(sWindow);
+    sWindow = NULL;
 
     //Quit SDL subsystems
     Mix_Quit();

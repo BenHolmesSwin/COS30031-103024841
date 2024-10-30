@@ -63,11 +63,12 @@ void Circle::render(SDL_Texture* texture, SDL_Rect* clip, double angle, SDL_Poin
         renderQuad.h = clip->h;
     }
 
+    //if colliding changes color
     if (colliding) {
-        SDL_SetTextureColorMod(texture, 0, 255, 0);
+        SDL_SetTextureColorMod(texture, 0, 255, 255);
     }
     else {
-        SDL_SetTextureColorMod(texture, 0, 0, 0);
+        SDL_SetTextureColorMod(texture, 255, 0, 0);
     }
 
     //Render to screen

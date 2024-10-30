@@ -137,7 +137,7 @@ bool circleLoadMedia()
     else
     {
         //Color key image
-        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0xFF));
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0xFF, 0xFF, 0xFF));
 
         //Create moving circle texture from surface pixels
         movCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);
@@ -167,7 +167,7 @@ bool circleLoadMedia()
     else
     {
         //Color key image
-        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0xFF));
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0xFF, 0xFF, 0xFF));
 
         //Create moving circle texture from surface pixels
         stCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);

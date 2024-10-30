@@ -28,6 +28,7 @@ std::vector<std::string> split(std::string& s, const std::string& delimiter) {//
 
 //the file is read line by line with format "key: function" (only change background and bindings done)
 void loadKey(char* fileName) {
+	std::cout << "File Loaded" << std::endl;
 	std::ifstream file;
 	file.open(fileName);
 	std::string line;
@@ -107,7 +108,7 @@ int main( int argc, char* args[] )
 							loadKey(args[1]);
 						}
 						else {
-							changeKeys(e.key.keysym.sym);
+							//changeKeys(e.key.keysym.sym);
 						}
 					}
 				}

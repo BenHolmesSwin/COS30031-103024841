@@ -38,22 +38,26 @@ int main(){
             string line;
             getline(infile, line);
             auto tokens = split(line, ": \t");
-            switch(i){
-                case 0:
-                    outData.loops = stoi(tokens[2]);
+            switch (i) {
+            case 0:
+                outData.loops = stoi(tokens[2]);
                 break;
-                case 1:
-                    outData.time = stoi(tokens[1]) /1000;
+            case 1:
+                outData.time = stoi(tokens[1]) / 1000;
                 break;
-                case 2:
-                    outData.loopsPerSec = stoi(tokens[1]);
+            case 2:
+                outData.loopsPerSec = stoi(tokens[1]);
                 break;
-                case 3:
-                    outData.numBoxes = stoi(tokens[1]);
+            case 3:
+                outData.numBoxes = stoi(tokens[1]);
                 break;
             }
                 
         }
         outfile << outData.loops << "," << outData.time << "," << outData.loopsPerSec << "," << outData.numBoxes << endl;
     }
+    //if the end of file is a blank line this will produce and abort error, but will still output the csv file.
+    infile.close();
+    outfile.close();
+    return 0;
 }

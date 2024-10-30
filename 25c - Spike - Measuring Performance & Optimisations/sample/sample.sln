@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sample", "sample.vcxproj", "{48700183-D9B2-49AE-BD41-6D4F2DF9B863}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conversion", "conversion\conversion.vcxproj", "{22E5177A-77C5-4BF6-8266-D33FFF9B57C7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conversion", "conversion.vcxproj", "{22E5177A-77C5-4BF6-8266-D33FFF9B57C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

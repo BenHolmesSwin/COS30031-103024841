@@ -15,7 +15,7 @@ const int BOX_WIDTH = 50;
 const int BOX_HEIGHT = 50;
 const int BOX_SPEED = 10;
 
-const int TEST_TIME = 5 * 1000; // 10 seconds
+const int TEST_TIME = 5 * 1000; // 5 seconds
 
 enum BoxState { CONTACT_NO, CONTACT_YES };
 
@@ -24,6 +24,8 @@ struct CrashBox {
 	int dx, dy; // vel
 	int w, h; // size
 	BoxState state;
+	inline bool left(int in) { return (x + w) <= in; }
+	inline bool bottom(int in) { return (y + h) <= in; }
 };
 
 // Global variables.
@@ -165,12 +167,17 @@ bool crash_test_C(CrashBox &A, CrashBox &B) { // via struct (ref!)
 }
 
 bool crash_test_D(CrashBox &A, CrashBox &B) {
-    if ((A.y + A.h) <= B.y) return false;
-    if (A.y >= (B.y + B.h)) return false;
-	if ((A.x + A.w) <= B.x) return false;
-	if (A.x >= (B.x + B.w)) return false;
-	//if((A.y + A.h) <= B.y || A.y >= (B.y + B.h) || (A.x + A.w) <= B.x || A.x >= (B.x + B.w)) return false;
+	if (A.bottom(B.y)) return false;
+    if (B.bottom(A.y)) return false;
+	if (A.left(B.x)) return false;
+	if (B.left(A.x)) return false;
     return true;
+}
+
+
+bool crash_test_D_mod(CrashBox& A, CrashBox& B) {
+	if((A.y + A.h) <= B.y || A.y >= (B.y + B.h) || (A.x + A.w) <= B.x || A.x >= (B.x + B.w)) return false;
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -238,6 +245,18 @@ void crash_test_all_D() {
 	}
 }
 
+void crash_test_all_D_mod() {
+	// check i against j
+	for (int i = 0; i < BOX_COUNT; i++) {
+		for (int j = i + 1; j < BOX_COUNT; j++) {
+			if (crash_test_D_mod(boxes[i], boxes[j])) {
+				boxes[i].state = CONTACT_YES;
+				boxes[j].state = CONTACT_YES;
+			}
+		}
+	}
+}
+
 //-----------------------------------------------------------------------------
 
 void update_boxes() {
@@ -252,11 +271,12 @@ void update_boxes() {
 		if (boxes[i].y >= SCREEN_HEIGHT) boxes[i].y -= SCREEN_HEIGHT;
 		if (boxes[i].y < 0) boxes[i].y += SCREEN_HEIGHT;
 		//TODO: try else if logic
+		boxes[i].state = CONTACT_NO;
 	}
 
 	// 1. mark all boxes as not collided //TODO: put this in the move loop?
-	for (int i = 0; i < BOX_COUNT; i++)
-		boxes[i].state = CONTACT_NO;
+	//for (int i = 0; i < BOX_COUNT; i++)
+		
 	// 2. call whatever function has been set to test all i against j boxes
 	crash_test_all_ptr();
 }
@@ -368,14 +388,15 @@ int run_test(const char* title, void (*function_ptr)()) {
 }
 
 int main(int argc, char* args[]) {
-	for (BOX_COUNT = 40; BOX_COUNT <= 50; ++BOX_COUNT) {
+	for (BOX_COUNT = 50; BOX_COUNT <= 50; ++BOX_COUNT) {
 		boxes = new CrashBox[BOX_COUNT];
-		for (int i = 0; i < 5; ++i) {
-			run_test("Test A1", crash_test_all_A1); //TODO: not paying attention to return values. :(
-			run_test("Test A2", crash_test_all_A2);
-			run_test("Test B", crash_test_all_B);
-			run_test("Test C", crash_test_all_C);
+		for (int i = 0; i < 10; ++i) {
+			//run_test("Test A1", crash_test_all_A1); //TODO: not paying attention to return values. :(
+			//run_test("Test A2", crash_test_all_A2);
+			//run_test("Test B", crash_test_all_B);
+			//run_test("Test C", crash_test_all_C);
 			run_test("Test D", crash_test_all_D);
+			//run_test("Test M", crash_test_all_D_mod);
 		}
 		delete[] boxes;
 	}

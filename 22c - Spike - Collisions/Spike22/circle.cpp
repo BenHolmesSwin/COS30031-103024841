@@ -8,12 +8,16 @@
 
 Circle::Circle() {
     //Initialize the offsets
-    mPosX = 100;
+    mPosX = 50;
     mPosY = 100;
 
     //Initialize the velocity
     mVelX = CIRCLE_VEL;
     mVelY = CIRCLE_VEL;
+    
+    //initalize centre circle (for colisions later)
+    centX = mPosX + radius;
+    centY = mPosY + radius;
 }
 
 void Circle::move()
@@ -22,7 +26,7 @@ void Circle::move()
     mPosX += mVelX;
 
     //If the circle went too far to the left or right
-    if ((mPosX - circleW < 0) || (mPosX + circleW > SCREEN_WIDTH))
+    if ((mPosX < 0) || (mPosX + circleW > SCREEN_WIDTH))
     {
         //Move back
         mPosX -= mVelX;
@@ -34,13 +38,17 @@ void Circle::move()
     mPosY += mVelY;
 
     //If the circle went too far up or down
-    if ((mPosY - circleH < 0) || (mPosY + circleH > SCREEN_HEIGHT))
+    if ((mPosY < 0) || (mPosY + circleH > SCREEN_HEIGHT))
     {
         //Move back
         mPosY -= mVelY;
         //filp velocity
         mVelY = -mVelY;
     }
+
+    //update centre
+    centX = mPosX + radius;
+    centY = mPosY + radius;
 }
 
 void Circle::render(SDL_Texture* texture, bool collision, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {

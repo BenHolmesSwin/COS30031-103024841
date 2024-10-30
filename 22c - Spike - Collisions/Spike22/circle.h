@@ -9,8 +9,10 @@ public:
     int circleW = 20;
     int circleH = 20;
 
+    int radius = circleH / 2;
+
     //Maximum axis velocity of the dot
-    static const int CIRCLE_VEL = 20;
+    static const int CIRCLE_VEL = 1;
 
     //Initializes the variables
     Circle();
@@ -27,4 +29,6 @@ private:
 
     //The velocity of the dot
     int mVelX, mVelY;
+
+    int centX, centY;
 };

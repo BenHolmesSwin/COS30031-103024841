@@ -4,17 +4,18 @@
 #include <stdio.h>
 #include <random>
 #include <string>
+#include <sstream>
 #include <SDL_image.h>
 #include <SDL_timer.h>
 
 #include "circle.h"
 #include "SDLcircle.h"
+#include "MyTimer.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 800;
-const int SCREEN_FPS = 60;
-const int SCREEN_TICKS_PER_FRAME = 1;
+const int SCREEN_WIDTH = 400;
+const int SCREEN_HEIGHT = 400;
+const int SCREEN_TICKS_PER_FRAME = 10;
 
 //window and background image
 SDL_Window* cWindow = NULL;
@@ -32,6 +33,8 @@ SDL_Texture* movCircleTexture;
 Circle stCircle;
 SDL_Texture* stCircleTexture;
 
+SDL_Texture* cFPSTextTexture = NULL;
+
 void SDLcircle()
 {
     if (!circleInit()) {
@@ -46,14 +49,13 @@ void SDLcircle()
             SDL_Event e;
             //loop flag
             bool quit = false;
-            
-            //The frames per second timer
-            LTimer fpsTimer;
 
             //The frames per second cap timer
-            LTimer capTimer;
+            MyTimer capTimer;
 
             while (quit == false) {
+                //Start cap timer
+                capTimer.start();
                 while (SDL_PollEvent(&e) != 0) {
                     if (e.type == SDL_QUIT) {
                         quit = true;

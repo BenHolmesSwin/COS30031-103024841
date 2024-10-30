@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="circle.cpp" />
+    <ClCompile Include="MyTimer.cpp" />
     <ClCompile Include="SDLcircle.cpp" />
     <ClCompile Include="SDLcollision.cpp" />
     <ClCompile Include="SDLmain.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="circle.h" />
+    <ClInclude Include="MyTimer.h" />
     <ClInclude Include="SDLcircle.h" />
     <ClInclude Include="SDLcollision.h" />
     <ClInclude Include="SDLsquare.h" />

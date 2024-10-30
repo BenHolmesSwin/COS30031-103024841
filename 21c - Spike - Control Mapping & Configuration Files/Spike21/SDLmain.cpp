@@ -108,7 +108,7 @@ int main( int argc, char* args[] )
 							loadKey(args[1]);
 						}
 						else {
-							//changeKeys(e.key.keysym.sym);
+							//changeKeys(e.key.keysym.sym); currently commented out to make the testing of the file change, changes key
 						}
 					}
 				}

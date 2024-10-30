@@ -67,9 +67,12 @@ void SDLcircle()
                 SDL_SetRenderDrawColor(cRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
                 SDL_RenderClear(cRenderer);
 
+                //checking moving is colliding with stationary
+                movCircle.collisionCheck(stCircle);
+
                 //Render objects
-                movCircle.render(movCircleTexture,false);
-                //stCircle.render(stCircleTexture, false);
+                stCircle.render(stCircleTexture);
+                movCircle.render(movCircleTexture);
 
                 //Update screen
                 SDL_RenderPresent(cRenderer);
@@ -134,7 +137,7 @@ bool circleLoadMedia()
     else
     {
         //Color key image
-        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0xFF));
 
         //Create moving circle texture from surface pixels
         movCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);
@@ -164,7 +167,7 @@ bool circleLoadMedia()
     else
     {
         //Color key image
-        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0xFF));
 
         //Create moving circle texture from surface pixels
         stCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);

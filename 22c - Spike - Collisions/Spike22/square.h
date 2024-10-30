@@ -22,6 +22,7 @@ public:
     //Shows the dot on the screen
     void render();
 
+    //checking collision
     void collisionCheck(Square otherSquare);
 
 private:

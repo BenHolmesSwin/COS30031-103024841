@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <SDL.h>
 
 class Circle
 {
@@ -17,18 +17,25 @@ public:
     //Initializes the variables
     Circle();
 
-    //Moves the dot
+    //Moves the circle
     void move();
 
-    //Shows the dot on the screen
-    void render(SDL_Texture* texture, bool collision, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    //centre point coords, for collison detection
+    int centX, centY;
+
+    //Shows the circle on the screen (uses texture cause no easy circle creation)
+    void render(SDL_Texture* texture, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+    //checking collision
+    void collisionCheck(Circle otherCircle);
 
 private:
-    //The X and Y offsets of the circle
+    //The X and Y offsets of the circle (the top left corner)
     int mPosX, mPosY;
 
     //The velocity of the cirlce
     int mVelX, mVelY;
 
-    int centX, centY;
+    bool colliding = false;
+
 };

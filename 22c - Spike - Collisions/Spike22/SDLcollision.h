@@ -1,5 +1,8 @@
 #pragma once
 
 class Square;
+class Circle;
 
-bool squareCollision(Square selfSquare, Square otherSquare);
+bool squareCollision(Square a, Square b);
+
+bool circleCollision(Circle a, Circle b);

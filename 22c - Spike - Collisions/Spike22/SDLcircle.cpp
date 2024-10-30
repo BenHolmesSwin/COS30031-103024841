@@ -33,8 +33,6 @@ SDL_Texture* movCircleTexture;
 Circle stCircle;
 SDL_Texture* stCircleTexture;
 
-SDL_Texture* cFPSTextTexture = NULL;
-
 void SDLcircle()
 {
     if (!circleInit()) {
@@ -140,7 +138,7 @@ bool circleLoadMedia()
 
         //Create moving circle texture from surface pixels
         movCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);
-        if (newTexture == NULL)
+        if (movCircleTexture == NULL)
         {
             printf("Unable to create texture from %s! SDL Error: %s\n", "circleTexture/circle.bmp", SDL_GetError());
         }
@@ -170,7 +168,7 @@ bool circleLoadMedia()
 
         //Create moving circle texture from surface pixels
         stCircleTexture = SDL_CreateTextureFromSurface(cRenderer, loadedSurface);
-        if (newTexture == NULL)
+        if (movCircleTexture == NULL)
         {
             printf("Unable to create texture from %s! SDL Error: %s\n", "circleTexture/circle.bmp", SDL_GetError());
         }

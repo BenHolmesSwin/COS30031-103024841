@@ -122,7 +122,7 @@ bool squareLoadMedia()
     //Loading success flag
     bool success = true;
 
-    //nothing to render
+    //nothing to load
 
     return success;
 }

@@ -29,24 +29,8 @@ bool boxOnBox(Square a, Square b) {
 
 bool circleOnCircle(Circle a, Circle b) {
 	//the overlap distance square (to avoid sqrt)
-	int overlapDistance = (a.radius + b.radius) ^ 2;
-
-	int xDist, yDist;
-	//checking which x is greater to produce positive value
-	if (a.centX < b.centX) {
-		xDist = (b.centX - a.centX) ^ 2;
-	}
-	else {
-		xDist = (a.centX - b.centX) ^ 2;
-	}
-	//checking which y is greater to prodduce positive value
-	if (a.centY < b.centY) {
-		yDist = (b.centY - a.centY) ^ 2;
-	}
-	else {
-		yDist = (a.centY - b.centY) ^ 2;
-	}
-	int distance = xDist + yDist;
+	int overlapDistance = pow((a.radius + b.radius),2);
+	int distance = pow((a.centY - b.centY), 2) + pow((a.centX - b.centX), 2);
 
 	return distance < overlapDistance;
 }

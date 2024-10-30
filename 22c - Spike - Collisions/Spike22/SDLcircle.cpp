@@ -24,7 +24,6 @@ SDL_Surface* cScreenSurface = NULL;
 //renderer
 SDL_Renderer* cRenderer = NULL;
 
-
 //moving circle
 Circle movCircle;
 SDL_Texture* movCircleTexture;
@@ -191,6 +190,9 @@ bool circleLoadMedia()
 }
 
 void circleClose() {
+
+    SDL_DestroyTexture(movCircleTexture);
+    SDL_DestroyTexture(stCircleTexture);
 
     //Destroy window
     SDL_DestroyRenderer(cRenderer);

@@ -53,5 +53,5 @@ void Square::render() {
 }
 
 void Square::collisionCheck(Square otherSquare) {
-    colliding = squareCollision(*this, otherSquare);
+    colliding = boxOnBox(*this, otherSquare);
 }

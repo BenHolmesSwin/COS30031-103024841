@@ -3,6 +3,6 @@
 class Square;
 class Circle;
 
-bool squareCollision(Square a, Square b);
+bool boxOnBox(Square a, Square b);
 
-bool circleCollision(Circle a, Circle b);
+bool circleOnCircle(Circle a, Circle b);

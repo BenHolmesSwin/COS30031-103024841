@@ -6,7 +6,7 @@
 #include "circle.h"
 
 
-bool squareCollision(Square a, Square b) {
+bool boxOnBox(Square a, Square b) {
 	//if bottom of a is less than top of b
 	if (a.mPosY + a.squareH <= b.mPosY) {
 		return false;
@@ -27,7 +27,7 @@ bool squareCollision(Square a, Square b) {
 	return true;
 }
 
-bool circleCollision(Circle a, Circle b) {
+bool circleOnCircle(Circle a, Circle b) {
 	//the overlap distance square (to avoid sqrt)
 	int overlapDistance = (a.radius + b.radius) ^ 2;
 

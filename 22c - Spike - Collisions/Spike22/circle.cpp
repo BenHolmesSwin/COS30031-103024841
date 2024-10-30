@@ -77,5 +77,5 @@ void Circle::render(SDL_Texture* texture, SDL_Rect* clip, double angle, SDL_Poin
 
 
 void Circle::collisionCheck(Circle otherCircle) {
-    colliding = circleCollision(*this, otherCircle);
+    colliding = circleOnCircle(*this, otherCircle);
 }
